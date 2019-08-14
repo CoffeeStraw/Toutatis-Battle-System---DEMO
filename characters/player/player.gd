@@ -12,8 +12,8 @@ var character
 var velocity = Vector3()
 
 func _ready():
-	camera    = get_node("Target/Camera")
-	character = get_node(".")
+	camera    = $Target/Camera
+	character = $"."
 
 func _physics_process(delta):
 	
