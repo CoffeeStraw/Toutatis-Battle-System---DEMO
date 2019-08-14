@@ -13,7 +13,7 @@ Developers:
   - [ ] Dummy
 
 ### Optional 3D Models
-- [ ] 3D Shield
+- [ ] Shield
 - [ ] Enemies
   - [ ] Big enemy (Orc?)
 
@@ -44,7 +44,7 @@ Developers:
   - [x] Simple Movement
   - [ ] Movement executing animations
 - [ ] 3D Person Camera follow ( [WOW Camera](https://www.youtube.com/watch?v=7AtD9LX1C6Q) )
-  - [ ] NOTE: While pressing down left button and swiping, camera won't rotate anymore, it will just slowly follow mouse movement
+  - NOTE: While pressing down left button and swiping, camera won't rotate anymore, it will just slowly follow mouse movement
 - [ ] Combat System
   - [ ] Swipe System
     - [ ] Recognizement of swipes on screen, pressing LEFT Mouse Button (A Swipe is given from the angle of the first and last point on mouse movement path while pressing left button)
