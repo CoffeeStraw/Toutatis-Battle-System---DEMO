@@ -1,25 +1,36 @@
+# Author: CoffeeStraw
+
 extends KinematicBody
 
-# CONSTANT (Configuration)
-const SPEED = 6
-const ACC = 3
-const DE_ACC = 6
-const GRAVITY = -9.81
+#  User Settings
+export (float, 1.0, 100.0) var speed = 6
+export (float, 1.0, 100.0) var acc = 3
+export (float, 1.0, 100.0) var de_acc = 6
+export (float, 1.0, 100.0) var gravity_mult = 3
 
 # Variables
-var camera
-var character
-var velocity = Vector3()
+var _camera
+var _character
+var _velocity = Vector3()
+var gravity = -9.81
 
 func _ready():
-	camera    = $Target/Camera
-	character = $"."
+	_camera    = $Target/Camera
+	_character = $"."
+	
+	gravity *= gravity_mult
+	
+func _input(ev):
+	if Input.is_action_just_pressed("move_run"):
+		speed = 20
+	elif Input.is_action_just_released("move_run"):
+		speed = 6
 
 func _physics_process(delta):
 	
 	# PLAYER MOVEMENT
 	var dir = Vector3()
-	var cam_xform = camera.get_global_transform()
+	var cam_xform = _camera.get_global_transform()
 	
 	# Taking the direction where player intend to walk to
 	if Input.is_action_pressed("move_fw"):
@@ -36,21 +47,21 @@ func _physics_process(delta):
 	
 	# Checking if Player is accelerating or de-accelerating,
 	# by calculating dot product between current direction of velocity and old one
-	var hv = velocity
+	var hv = _velocity
 	hv.y = 0
 	
 	# If vectors are facing the same direction
-	var accel = DE_ACC
+	var current_acc = de_acc
 	if (dir.dot(hv) > 0):
-		accel = ACC
+		current_acc = acc
 	
-	velocity = velocity.linear_interpolate(dir * SPEED, accel * delta)
-	velocity.y += delta * GRAVITY
-	velocity = move_and_slide(velocity, Vector3(0,1,0))
+	_velocity = _velocity.linear_interpolate(dir * speed, current_acc * delta)
+	_velocity.y += delta * gravity
+	_velocity = move_and_slide(_velocity, Vector3(0,1,0))
 	
 	# If the player is moving, rotate him
 	if(dir != Vector3(0,0,0)):
-		var angle = atan2(velocity.x, velocity.z)
-		var char_rot = character.get_rotation()
+		var angle = atan2(_velocity.x, _velocity.z)
+		var char_rot = _character.get_rotation()
 		char_rot.y = angle
-		character.set_rotation(char_rot)
+		_character.set_rotation(char_rot)

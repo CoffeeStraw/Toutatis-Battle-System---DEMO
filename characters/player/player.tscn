@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://characters/player/player.gd" type="Script" id=1]
-[ext_resource path="res://characters/player/Camera.gd" type="Script" id=2]
+[ext_resource path="res://characters/player/camera_follow.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -16,7 +16,7 @@ mesh = SubResource( 1 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 1.5, 0, 0, 0, 0.5, 0, 1.5, 0 )
+transform = Transform( 0.5, 0, 0, 0, 1.5, 0, 0, 0, 0.5, 0, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="Target" type="Spatial" parent="."]

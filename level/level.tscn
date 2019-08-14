@@ -13,7 +13,6 @@ points = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1 )
 [node name="Spatial" type="Spatial"]
 
 [node name="Floor" type="MeshInstance" parent="."]
-editor/display_folded = true
 transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0.345524, -0.032044, -0.210386 )
 material_override = SubResource( 1 )
 mesh = SubResource( 2 )
