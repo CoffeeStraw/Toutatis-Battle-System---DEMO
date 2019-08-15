@@ -43,7 +43,7 @@ Developers:
 - [ ] Movement
   - [x] Simple Movement
   - [ ] Movement executing animations
-- [ ] 3D Person Camera follow ( [WOW Camera](https://www.youtube.com/watch?v=7AtD9LX1C6Q) )
+- [x] 3D Person Camera follow ( [WOW Camera](https://www.youtube.com/watch?v=7AtD9LX1C6Q) )
   - NOTE: While pressing down left button and swiping, camera won't rotate anymore, it will just slowly follow mouse movement
 - [ ] Combat System
   - [ ] Swipe System
