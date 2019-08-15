@@ -24,4 +24,3 @@ material/0 = null
 shape = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-
