@@ -6,8 +6,7 @@ extends Camera
 export (float, 0.0, 1.0) var sensitivity = 0.05
 export (float, 0.0, 0.999, 0.001) var smoothness = 0.8
 export var distance = 5.0
-export (int, 0, 360) var pitch_limit = 90
-export (float, 0.01, 100.0) var no_movement_mouse_perc = 75.0
+export (float, 0.01, 100.0) var no_movement_mouse_perc = 60.0 # %
 
 # Intern variables.
 var _privot
@@ -17,6 +16,8 @@ var _mouse_perc = Vector2()
 var _yaw = 0.0
 var _pitch = 0.0
 var _total_pitch = 0.0
+
+var mouse_sliding = false
 
 func _ready():
 	# Getting target, making independent from parents
@@ -38,6 +39,11 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		_mouse_pos = event.relative
 		_mouse_global_pos = event.position
+	if event.is_action_pressed("click"):
+		mouse_sliding = true
+		# Change facing (HOW????)
+	elif event.is_action_released("click"):
+		mouse_sliding = false
 
 func _physics_process(delta):
 	# Calling updates
@@ -62,23 +68,35 @@ func _update_mouselook():
 
 	set_translation(target)
 	
-	# Calculating type of rotation
-	if abs(_mouse_perc.x) <= no_movement_mouse_perc and abs(_mouse_perc.y) <= no_movement_mouse_perc:
-		_mouse_pos *= sensitivity
+	# Calculating type of rotation on y axis (yaw)
+	if mouse_sliding or abs(_mouse_perc.x) <= no_movement_mouse_perc:
+		# Slow and one time rotation
+		_mouse_pos.x *= sensitivity / 2
 	else:
-		_mouse_pos = _mouse_perc * 1.3
-		_mouse_pos *= sensitivity / 3
+		# Continuos exponential rotation on the edge
+		_mouse_pos.x = 100.0 - ( 100.0 - abs(_mouse_perc.x) ) / (100.0 - no_movement_mouse_perc) * 100.0
+		_mouse_pos.x = pow(_mouse_pos.x / 10, 2) * sign(_mouse_perc.x)
+		_mouse_pos.x *= sensitivity
+		
+	# Calculating type of rotation on x axis (pitch)
+	if mouse_sliding or abs(_mouse_perc.y) <= no_movement_mouse_perc:
+		# Slow and one time rotation
+		_mouse_pos.y *= sensitivity / 2
+	else:
+		# Continuos exponential rotation on the edge
+		_mouse_pos.y = 100.0 - ( 100.0 - abs(_mouse_perc.y) ) / (100.0 - no_movement_mouse_perc) * 100.0
+		_mouse_pos.y = pow(_mouse_pos.y / 10, 2) * sign(_mouse_perc.y)
+		_mouse_pos.y *= sensitivity
 		
 	# Updating mouse rotation over target
 	_yaw = _yaw * smoothness + _mouse_pos.x * (1.0 - smoothness)
 	_pitch = _pitch * smoothness + _mouse_pos.y * (1.0 - smoothness)
 	_mouse_pos = Vector2(0, 0)
 
-	if pitch_limit < 360:
-		_pitch = clamp(_pitch, -pitch_limit - _total_pitch, pitch_limit - _total_pitch)
-
+	_pitch = clamp(_pitch, -60 - _total_pitch, 20 - _total_pitch) # Custom pitch limit to not make camera rotate too much
 	_total_pitch += _pitch
 	
+	# Making rotations (finally)
 	rotate_y(deg2rad(-_yaw))
 	rotate_object_local(Vector3(1,0,0), deg2rad(-_pitch))
 	
