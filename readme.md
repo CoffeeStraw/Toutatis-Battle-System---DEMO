@@ -7,8 +7,8 @@ Developers:
 ## TASKS
 
 ### 3D Models Low-poly
-- [ ] Main Character
-- [ ] Sword
+- [x] Main Character
+- [x] Sword
 - [ ] Enemies
   - [ ] Dummy
 
