@@ -47,7 +47,7 @@ Developers:
   - NOTE: While pressing down left button and swiping, camera won't rotate anymore, it will just slowly follow mouse movement
 - [ ] Combat System
   - [ ] Swipe System
-    - [ ] Recognizement of swipes on screen, pressing LEFT Mouse Button (A Swipe is given from the angle of the first and last point on mouse movement path while pressing left button)
+    - [x] Recognizement of swipes on screen, pressing LEFT Mouse Button (A Swipe is given from the angle of the first and last point on mouse movement path while pressing left button)
     - [ ] Character ATTACK animation execution
   - [ ] Damage system
   - [ ] Damage Numer Animation (number floating/number on the right/left of the UI)
