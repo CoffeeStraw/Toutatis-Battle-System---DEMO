@@ -26,3 +26,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78675, 0 )
 transform = Transform( -3.91618e-08, -0.44422, 0.895918, -1.94175e-08, 0.895918, 0.44422, -1, 0, -4.37114e-08, 2.14919, 1.36368, 0 )
 script = ExtResource( 2 )
 
+[node name="Cursor" type="Node" parent="."]
+
