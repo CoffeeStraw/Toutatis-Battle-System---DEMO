@@ -65,3 +65,8 @@ func _physics_process(delta):
 		var char_rot = _character.get_rotation()
 		char_rot.y = angle
 		_character.set_rotation(char_rot)
+
+func _on_SwipeDetector_swiped(gesture):
+	print("Type of attack: " + str( gesture.get_direction() ) )
+	print("Attack length: " + str( gesture.get_distance() ) )
+	print()

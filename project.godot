@@ -23,6 +23,10 @@ config/icon="res://icon.png"
 
 mouse_cursor/custom_image="res://assets/Cursor.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "swipe-detector" )
+
 [input]
 
 move_fw={
