@@ -4,6 +4,8 @@ Developers:
 - Strippoli Antonio
 - Baglioni Michele
 
+<hr>
+
 ## TASKS
 
 ### 3D Models Low-poly
@@ -43,8 +45,7 @@ Developers:
 - [ ] Movement
   - [x] Simple Movement
   - [ ] Movement executing animations
-- [x] 3D Person Camera follow ( [WOW Camera](https://www.youtube.com/watch?v=7AtD9LX1C6Q) )
-  - NOTE: While pressing down left button and swiping, camera won't rotate anymore, it will just slowly follow mouse movement
+- [x] 3D Person Camera follow
 - [ ] Combat System
   - [ ] Swipe System
     - [x] Recognizement of swipes on screen, pressing LEFT Mouse Button (A Swipe is given from the angle of the first and last point on mouse movement path while pressing left button)
@@ -78,4 +79,4 @@ Developers:
 - [ ] Font and color for damage number
 - [ ] Title Screen mockup
 - [ ] Pause Menu mockup
-- [ ] [Mouse icon](https://docs.godotengine.org/en/3.0/tutorials/inputs/custom_mouse_cursor.html)
+- [x] [Mouse icon](https://docs.godotengine.org/en/3.0/tutorials/inputs/custom_mouse_cursor.html)

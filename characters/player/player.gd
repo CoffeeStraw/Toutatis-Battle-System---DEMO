@@ -27,7 +27,6 @@ func _input(ev):
 		speed = 6
 
 func _physics_process(delta):
-	
 	# PLAYER MOVEMENT
 	var dir = Vector3()
 	var cam_xform = _camera.get_global_transform()
@@ -67,6 +66,11 @@ func _physics_process(delta):
 		_character.set_rotation(char_rot)
 
 func _on_SwipeDetector_swiped(gesture):
+	# Calculating power (used for later calculations of speed and damage)
+	var power = gesture.first_point().distance_to( gesture.last_point() )
+	var max_power = Vector2(0.0, 0.0).distance_to( get_viewport().size )
+	power /= max_power / 100
+	
 	print("Type of attack: " + str( gesture.get_direction() ) )
-	print("Attack length: " + str( gesture.get_distance() ) )
-	print()
+	print("Attack power: " + str( power ) + " / 100.0" )
+	print(" ")
