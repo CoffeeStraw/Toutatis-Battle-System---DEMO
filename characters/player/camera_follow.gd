@@ -49,7 +49,6 @@ func mouse_look():
 	)
 	
 	_mouse_pos *= sensitivity
-	
 	_yaw = _yaw * smoothness + _mouse_pos.x * (1.0 - smoothness)
 	_pitch = _pitch * smoothness + _mouse_pos.y * (1.0 - smoothness)
 	

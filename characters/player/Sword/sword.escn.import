@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/sword.dae-a1188e65f880d7634ba9ad3b7239f7f5.scn"
+path="res://.import/sword.escn-a3b7a69920a192a68e8915803b02b201.scn"
 
 [deps]
 
-source_file="res://characters/player/sword.dae"
-dest_files=[ "res://.import/sword.dae-a1188e65f880d7634ba9ad3b7239f7f5.scn" ]
+source_file="res://characters/player/Sword/sword.escn"
+dest_files=[ "res://.import/sword.escn-a3b7a69920a192a68e8915803b02b201.scn" ]
 
 [params]
 

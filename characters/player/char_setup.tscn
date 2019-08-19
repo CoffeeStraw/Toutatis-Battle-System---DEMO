@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://characters/player/Char/char.escn" type="PackedScene" id=1]
+[ext_resource path="res://characters/player/Sword/sword.escn" type="PackedScene" id=2]
+
+[node name="Character Setup" index="0" instance=ExtResource( 1 )]
+
+[node name="Armature" parent="." index="0"]
+bones/19/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="2"]
+transform = Transform( 2.56114e-07, -1.44006e-07, -1, -6.19552e-07, 1, -5.09899e-08, 1, -3.31499e-07, -4.09782e-08, 2.13432, 1.38932, 0.145938 )
+bone_name = "finger.R"
+
+[node name="Sword" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -1.58865, -0.0211328, -0.0607746 )
+

@@ -11,12 +11,14 @@ export (float, 1.0, 100.0) var gravity_mult = 3
 # Variables
 var _camera
 var _character
+var _anim
 var _velocity = Vector3()
 var gravity = -9.81
 
 func _ready():
 	_camera    = $Target/Camera
-	_character = $"."
+	_character = $"Character Models and Stuff"
+	_anim      = $"Character Models and Stuff/Armature/AnimationPlayer"
 	
 	gravity *= gravity_mult
 	
@@ -71,6 +73,12 @@ func _on_SwipeDetector_swiped(gesture):
 	var max_power = Vector2(0.0, 0.0).distance_to( get_viewport().size )
 	power /= max_power / 100
 	
+	# Calculating attack speed
+	var attack_speed = 1 + (100.0-power) * 3 / 100
+	
+	_anim.play("AttackL->R", -1, attack_speed)
+	
 	print("Type of attack: " + str( gesture.get_direction() ) )
 	print("Attack power: " + str( power ) + " / 100.0" )
+	print("Attack speed: " + str( attack_speed ) )
 	print(" ")
