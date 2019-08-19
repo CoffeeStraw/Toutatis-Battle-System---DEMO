@@ -63,4 +63,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18 )
 material_override = SubResource( 8 )
 mesh = SubResource( 5 )
 material/0 = null
-
