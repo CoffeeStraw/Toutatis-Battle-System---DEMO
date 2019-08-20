@@ -37,7 +37,6 @@ material/0 = null
 shape = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28055, 0 )
 collision/safe_margin = 1.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -63,3 +62,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18 )
 material_override = SubResource( 8 )
 mesh = SubResource( 5 )
 material/0 = null
+

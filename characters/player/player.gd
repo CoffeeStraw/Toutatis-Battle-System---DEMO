@@ -76,7 +76,7 @@ func _on_SwipeDetector_swiped(gesture):
 	# Calculating attack speed
 	var attack_speed = 1 + (100.0-power) * 3 / 100
 	
-	_anim.play("AttackL->R", -1, attack_speed)
+	# _anim.play("ArmatureAction", -1, attack_speed)
 	
 	print("Type of attack: " + str( gesture.get_direction() ) )
 	print("Attack power: " + str( power ) + " / 100.0" )

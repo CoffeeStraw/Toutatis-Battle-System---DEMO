@@ -6,8 +6,6 @@
 [ext_resource path="res://addons/swipe-detector/swipe_detector.gd" type="Script" id=4]
 [ext_resource path="res://addons/swipe-detector/icon.png" type="Texture" id=5]
 
-
-
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.57, 2.26, 1 )
 
@@ -17,15 +15,17 @@ script = ExtResource( 1 )
 [node name="Character Models and Stuff" parent="." instance=ExtResource( 2 )]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.039, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.46, 0, 3.18606, -0.23 )
 shape = SubResource( 1 )
 
 [node name="Target" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25058, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.47524, 0 )
 
 [node name="Camera" type="Camera" parent="Target"]
 transform = Transform( -1, 3.88343e-08, -7.83239e-08, 0, 0.895921, 0.444213, 8.74228e-08, 0.444213, -0.895921, 0, 1.364, -2.149 )
 script = ExtResource( 3 )
+distance = 4.5
+height = 2.5
 
 [node name="SwipeDetector" type="Node" parent="."]
 script = ExtResource( 4 )
