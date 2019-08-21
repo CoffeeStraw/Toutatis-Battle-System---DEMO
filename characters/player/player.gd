@@ -3,7 +3,8 @@
 extends KinematicBody
 
 #  User Settings
-export (float, 1.0, 100.0) var speed = 6
+export (float, 1.0, 100.0) var normal_speed = 6
+export (float, 1.0, 100.0) var max_speed = 12
 export (float, 1.0, 100.0) var acc = 3
 export (float, 1.0, 100.0) var de_acc = 6
 export (float, 1.0, 100.0) var gravity_mult = 3
@@ -12,6 +13,8 @@ export (float, 1.0, 100.0) var gravity_mult = 3
 var _camera
 var _character
 var _anim
+var _anim_tree
+var _speed = normal_speed
 var _velocity = Vector3()
 var gravity = -9.81
 
@@ -19,14 +22,15 @@ func _ready():
 	_camera    = $Target/Camera
 	_character = $"Character Models and Stuff"
 	_anim      = $"Character Models and Stuff/Armature/AnimationPlayer"
+	_anim_tree = $"Character Models and Stuff/Armature/AnimationTree"
 	
 	gravity *= gravity_mult
 	
 func _input(ev):
 	if Input.is_action_just_pressed("move_run"):
-		speed = 20
+		_speed = max_speed
 	elif Input.is_action_just_released("move_run"):
-		speed = 6
+		_speed = normal_speed
 
 func _physics_process(delta):
 	# PLAYER MOVEMENT
@@ -55,9 +59,12 @@ func _physics_process(delta):
 	var current_acc = de_acc
 	if (dir.dot(hv) > 0):
 		current_acc = acc
+		
+	hv = hv.linear_interpolate(dir * _speed, current_acc * delta)
 	
-	_velocity = _velocity.linear_interpolate(dir * speed, current_acc * delta)
+	_velocity.x = hv.x
 	_velocity.y += delta * gravity
+	_velocity.z = hv.z
 	_velocity = move_and_slide(_velocity, Vector3(0,1,0))
 	
 	# If the player is moving, rotate him
@@ -66,6 +73,9 @@ func _physics_process(delta):
 		var char_rot = _character.get_rotation()
 		char_rot.y = angle
 		_character.set_rotation(char_rot)
+		
+	var speed_blend = hv.length() / max_speed
+	_anim_tree.set("parameters/Idle_Run/blend_amount", speed_blend)
 
 func _on_SwipeDetector_swiped(gesture):
 	# Calculating power (used for later calculations of speed and damage)
@@ -76,7 +86,7 @@ func _on_SwipeDetector_swiped(gesture):
 	# Calculating attack speed
 	var attack_speed = 1 + (100.0-power) * 3 / 100
 	
-	# _anim.play("ArmatureAction", -1, attack_speed)
+	_anim.play("attack_left", -1, attack_speed)
 	
 	print("Type of attack: " + str( gesture.get_direction() ) )
 	print("Attack power: " + str( power ) + " / 100.0" )
