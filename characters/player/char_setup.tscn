@@ -1,43 +1,78 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://characters/player/Char/char.escn" type="PackedScene" id=1]
 [ext_resource path="res://characters/player/Sword/sword.escn" type="PackedScene" id=2]
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "idle_loop"
 
-[sub_resource type="AnimationNodeBlend2" id=3]
-
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "running_loop"
 
-[sub_resource type="AnimationNodeBlendTree" id=5]
-graph_offset = Vector2( -250, 125.75 )
-nodes/Idle/node = SubResource( 2 )
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "walking_loop"
+
+[sub_resource type="AnimationNodeOneShot" id=9]
+filter_enabled = true
+filters = [ ".:arm.R", ".:finger.R", ".:finger2.R", ".:forearm.R", ".:hand.R", ".:shoulder.R", ".:thumb.R", ".:thumb2.R" ]
+autorestart_random_delay = 379.667
+
+[sub_resource type="AnimationNodeTimeScale" id=10]
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "attack_left"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "idle_loop"
+
+[sub_resource type="AnimationNodeBlend2" id=5]
+
+[sub_resource type="AnimationNodeBlend2" id=7]
+
+[sub_resource type="AnimationNodeBlend2" id=6]
+
+[sub_resource type="AnimationNodeBlendTree" id=11]
+graph_offset = Vector2( -135, 291.068 )
+nodes/Animation/node = SubResource( 4 )
+nodes/Animation/position = Vector2( -20, 260 )
+"nodes/Animation 2/node" = SubResource( 1 )
+"nodes/Animation 2/position" = Vector2( 0, 380 )
+"nodes/Animation 3/node" = SubResource( 2 )
+"nodes/Animation 3/position" = Vector2( -20, 500 )
+nodes/Attack/node = SubResource( 9 )
+nodes/Attack/position = Vector2( 820, 320 )
+nodes/AttackSpeed/node = SubResource( 10 )
+nodes/AttackSpeed/position = Vector2( 660, 440 )
+nodes/Attack_Left/node = SubResource( 3 )
+nodes/Attack_Left/position = Vector2( 480, 460 )
+nodes/Idle/node = SubResource( 8 )
 nodes/Idle/position = Vector2( 0, 140 )
-nodes/Idle_Run/node = SubResource( 3 )
-nodes/Idle_Run/position = Vector2( 180, 160 )
-nodes/Running/node = SubResource( 4 )
-nodes/Running/position = Vector2( -20, 260 )
-nodes/output/position = Vector2( 360, 160 )
-node_connections = [ "output", 0, "Idle_Run", "Idle_Run", 0, "Idle", "Idle_Run", 1, "Running" ]
+nodes/Idle_Run/node = SubResource( 5 )
+nodes/Idle_Run/position = Vector2( 220, 380 )
+nodes/Idle_Walk/node = SubResource( 7 )
+nodes/Idle_Walk/position = Vector2( 220, 160 )
+nodes/Walk_Run/node = SubResource( 6 )
+nodes/Walk_Run/position = Vector2( 480, 280 )
+nodes/output/position = Vector2( 980, 320 )
+node_connections = [ "output", 0, "Attack", "Idle_Run", 0, "Animation 2", "Idle_Run", 1, "Animation 3", "Walk_Run", 0, "Idle_Walk", "Walk_Run", 1, "Idle_Run", "AttackSpeed", 0, "Attack_Left", "Attack", 0, "Walk_Run", "Attack", 1, "AttackSpeed", "Idle_Walk", 0, "Idle", "Idle_Walk", 1, "Animation" ]
 
-[node name="Character Setup" index="0" instance=ExtResource( 1 )]
-
-[node name="Armature" parent="." index="0"]
-bones/19/bound_children = [ NodePath("BoneAttachment") ]
+[node name="Character Setup" instance=ExtResource( 1 )]
 
 [node name="AnimationPlayer" parent="Armature" index="0"]
 playback_speed = 1.15
 
 [node name="AnimationTree" type="AnimationTree" parent="Armature" index="1"]
-tree_root = SubResource( 5 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
+parameters/Attack/active = false
+parameters/AttackSpeed/scale = 1.0
 parameters/Idle_Run/blend_amount = 0.0
+parameters/Idle_Walk/blend_amount = 0.0
+parameters/Walk_Run/blend_amount = 0.0
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.2276, 0.836553, 0.498375, -0.784076, -0.460942, 0.415645, 0.57743, -0.296162, 0.760831, 0.875903, 0.107154, -0.458712 )
+transform = Transform( -0.2276, 0.836553, 0.498375, -0.774149, -0.465909, 0.428515, 0.590672, -0.288286, 0.753657, 0.875903, 0.10275, -0.448006 )
 bone_name = "finger.R"
 
 [node name="Sword" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]
