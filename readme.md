@@ -22,8 +22,9 @@ Developers:
 <hr>
 
 ### Animations
-- [ ] Idle (loop)
-- [ ] Run (loop)
+- [x] Idle (loop)
+- [x] Walking (loop)
+- [x] Running (loop)
 - [ ] Attacks
   - [ ] LEFT corner to RIGHT corner             (→)
   - [ ] TOP_LEFT corner to BOTTOM_RIGHT corner  (↘)
@@ -42,14 +43,14 @@ Developers:
 <hr>
 
 ### Scripts
-- [ ] Movement
+- [x] Movement
   - [x] Simple Movement
-  - [ ] Movement executing animations
+  - [x] Movement executing animations
 - [x] 3D Person Camera follow
 - [ ] Combat System
-  - [ ] Swipe System
+  - [x] Swipe System
     - [x] Recognizement of swipes on screen, pressing LEFT Mouse Button (A Swipe is given from the angle of the first and last point on mouse movement path while pressing left button)
-    - [ ] Character ATTACK animation execution
+    - [x] Character ATTACK animation execution
   - [ ] Damage system
   - [ ] Damage Numer Animation (number floating/number on the right/left of the UI)
   - [ ] Enemy System
