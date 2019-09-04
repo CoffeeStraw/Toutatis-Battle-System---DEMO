@@ -14,16 +14,22 @@ var _camera
 var _character
 var _anim
 var _anim_tree
+
+var _hud_damage
+var _hud_speed
+
 var _speed = normal_speed
 var _velocity = Vector3()
 var _walk_run_blend = 0.0
 var gravity = -9.81
 
 func _ready():
-	_camera    = $Target/Camera
-	_character = $"Character Models and Stuff"
-	_anim      = $"Character Models and Stuff/Armature/AnimationPlayer"
-	_anim_tree = $"Character Models and Stuff/Armature/AnimationTree"
+	_camera     = $Target/Camera
+	_character  = $"Character Models and Stuff"
+	_anim       = $"Character Models and Stuff/Armature/AnimationPlayer"
+	_anim_tree  = $"Character Models and Stuff/Armature/AnimationTree"
+	_hud_damage = $"Control/Panel/DamageValue"
+	_hud_speed  = $"Control/Panel/SpeedValue"
 	
 	gravity *= gravity_mult
 	
@@ -97,6 +103,9 @@ func _on_SwipeDetector_swiped(gesture):
 	
 	_anim_tree.set("parameters/Attack/active", true)
 	_anim_tree.set("parameters/AttackSpeed/scale", attack_speed)
+	
+	_hud_damage.set_text(str(int(power)))
+	_hud_speed.set_text(str(int(attack_speed)))
 	
 	print("Type of attack: " + str( gesture.get_direction() ) )
 	print("Attack power: " + str( power ) + " / 100.0" )

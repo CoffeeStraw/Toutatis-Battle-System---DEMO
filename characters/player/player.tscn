@@ -22,7 +22,7 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.47524, 0 )
 
 [node name="Camera" type="Camera" parent="Target"]
-transform = Transform( -1, 3.88343e-08, -7.83239e-08, 0, 0.895921, 0.444213, 8.74228e-08, 0.444213, -0.895921, 0, 1.364, -2.149 )
+transform = Transform( -1, 3.88343e-008, -7.83239e-008, 0, 0.895921, 0.444213, 8.74228e-008, 0.444213, -0.895921, 0, 1.364, -2.149 )
 script = ExtResource( 3 )
 distance = 4.5
 height = 2.5
@@ -34,4 +34,45 @@ __meta__ = {
 }
 mouse_buttons_for_swipe_started = [ 1 ]
 
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 150.0
+margin_bottom = 100.0
+
+[node name="Damage" type="Label" parent="Control/Panel"]
+margin_left = 10.0
+margin_right = 160.0
+margin_bottom = 40.0
+text = "Damage:"
+valign = 1
+
+[node name="DamageValue" type="Label" parent="Control/Panel"]
+margin_left = 72.0
+margin_right = 160.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 1, 0.427451, 0.427451, 1 )
+text = "0"
+valign = 1
+
+[node name="Speed" type="Label" parent="Control/Panel"]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 160.0
+margin_bottom = 60.0
+text = "Speed:"
+valign = 1
+
+[node name="SpeedValue" type="Label" parent="Control/Panel"]
+margin_left = 72.0
+margin_top = 19.9446
+margin_right = 160.0
+margin_bottom = 59.9446
+custom_colors/font_color = Color( 1, 0.427451, 0.427451, 1 )
+text = "0"
+valign = 1
 [connection signal="swiped" from="SwipeDetector" to="." method="_on_SwipeDetector_swiped"]
