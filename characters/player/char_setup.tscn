@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://characters/player/Char/char.escn" type="PackedScene" id=1]
-[ext_resource path="res://characters/player/Sword/sword.escn" type="PackedScene" id=2]
+[ext_resource path="res://characters/player/Sword/sword.tscn" type="PackedScene" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "idle_loop"
@@ -19,35 +19,35 @@ autorestart_random_delay = 379.667
 
 [sub_resource type="AnimationNodeTimeScale" id=5]
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "attack_down"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "attack_left"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "attack_right"
 
-[sub_resource type="AnimationNodeStateMachine" id=17]
-states/attack_down/node = SubResource( 11 )
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/attack_down/node = SubResource( 6 )
 states/attack_down/position = Vector2( 590, 303 )
-states/attack_left/node = SubResource( 12 )
+states/attack_left/node = SubResource( 7 )
 states/attack_left/position = Vector2( 400, 192 )
-states/attack_right/node = SubResource( 13 )
+states/attack_right/node = SubResource( 8 )
 states/attack_right/position = Vector2( 777, 192 )
 graph_offset = Vector2( 265.46, 0 )
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "idle_loop"
 
-[sub_resource type="AnimationNodeBlend2" id=7]
+[sub_resource type="AnimationNodeBlend2" id=11]
 
-[sub_resource type="AnimationNodeBlend2" id=8]
+[sub_resource type="AnimationNodeBlend2" id=12]
 
-[sub_resource type="AnimationNodeBlend2" id=9]
+[sub_resource type="AnimationNodeBlend2" id=13]
 
-[sub_resource type="AnimationNodeBlendTree" id=10]
-graph_offset = Vector2( -97.8556, 416.25 )
+[sub_resource type="AnimationNodeBlendTree" id=14]
+graph_offset = Vector2( -97.8556, 150.25 )
 nodes/Animation/node = SubResource( 3 )
 nodes/Animation/position = Vector2( -20, 260 )
 "nodes/Animation 2/node" = SubResource( 1 )
@@ -58,44 +58,41 @@ nodes/AttackShot/node = SubResource( 4 )
 nodes/AttackShot/position = Vector2( 820, 500 )
 nodes/AttackSpeed/node = SubResource( 5 )
 nodes/AttackSpeed/position = Vector2( 660, 560 )
-nodes/Attacks/node = SubResource( 17 )
+nodes/Attacks/node = SubResource( 9 )
 nodes/Attacks/position = Vector2( 480, 580 )
-nodes/Idle/node = SubResource( 6 )
+nodes/Idle/node = SubResource( 10 )
 nodes/Idle/position = Vector2( 0, 140 )
-nodes/Idle_Run/node = SubResource( 7 )
+nodes/Idle_Run/node = SubResource( 11 )
 nodes/Idle_Run/position = Vector2( 220, 380 )
-nodes/Idle_Walk/node = SubResource( 8 )
+nodes/Idle_Walk/node = SubResource( 12 )
 nodes/Idle_Walk/position = Vector2( 220, 160 )
-nodes/Walk_Run/node = SubResource( 9 )
+nodes/Walk_Run/node = SubResource( 13 )
 nodes/Walk_Run/position = Vector2( 480, 280 )
 nodes/output/position = Vector2( 980, 500 )
-node_connections = [ "output", 0, "AttackShot", "Idle_Run", 0, "Animation 2", "Idle_Run", 1, "Animation 3", "AttackSpeed", 0, "Attacks", "Idle_Walk", 0, "Idle", "Idle_Walk", 1, "Animation", "Walk_Run", 0, "Idle_Walk", "Walk_Run", 1, "Idle_Run", "AttackShot", 0, "Walk_Run", "AttackShot", 1, "AttackSpeed" ]
+node_connections = [ "output", 0, "AttackShot", "Idle_Run", 0, "Animation 2", "Idle_Run", 1, "Animation 3", "Idle_Walk", 0, "Idle", "Idle_Walk", 1, "Animation", "Walk_Run", 0, "Idle_Walk", "Walk_Run", 1, "Idle_Run", "AttackShot", 0, "Walk_Run", "AttackShot", 1, "AttackSpeed", "AttackSpeed", 0, "Attacks" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 
-[node name="Character Setup" index="0" instance=ExtResource( 1 )]
-
-[node name="Armature" parent="." index="0"]
-bones/19/bound_children = [ NodePath("BoneAttachment") ]
+[node name="Character Setup" instance=ExtResource( 1 )]
 
 [node name="AnimationPlayer" parent="Armature" index="0"]
 playback_speed = 1.15
 
 [node name="AnimationTree" type="AnimationTree" parent="Armature" index="1"]
-tree_root = SubResource( 10 )
+tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/AttackShot/active = false
 parameters/AttackSpeed/scale = 1.0
-parameters/Attacks/playback = SubResource( 18 )
+parameters/Attacks/playback = SubResource( 15 )
 parameters/Idle_Run/blend_amount = 0.0
 parameters/Idle_Walk/blend_amount = 0.0
 parameters/Walk_Run/blend_amount = 0.0
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.2276, 0.836553, 0.498375, -0.78122, -0.462396, 0.41939, 0.581288, -0.293887, 0.758773, 0.875903, 0.105862, -0.455624 )
+transform = Transform( -0.2276, 0.836553, 0.498375, -0.803338, -0.450559, 0.389419, 0.550316, -0.311731, 0.774582, 0.875904, 0.116382, -0.47973 )
 bone_name = "finger.R"
 
 [node name="Sword" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -1.5, 0.01, -0.05 )
+transform = Transform( -4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, -1.56, -0.06, -0.08 )
 

@@ -15,6 +15,8 @@ var _character
 var _anim_attacks
 var _anim_tree
 
+var _sword_collision
+
 var _hud_damage
 var _hud_speed
 var _hud_type
@@ -25,14 +27,16 @@ var _walk_run_blend = 0.0
 var gravity = -9.81
 
 func _ready():
-	_camera       = $Target/Camera
+	_camera       = $"Target/Camera"
 	_character    = $"Character Models and Stuff"
 	_anim_tree    = $"Character Models and Stuff/Armature/AnimationTree"
+	_anim_tree.active = true
 	_anim_attacks = _anim_tree['parameters/Attacks/playback']
+	_sword_collision = $"Character Models and Stuff/Armature/BoneAttachment/Sword/StaticBody/CollisionShape"
 	
-	_hud_damage = $"Control/Panel/DamageValue"
-	_hud_speed  = $"Control/Panel/SpeedValue"
-	_hud_type  = $"Control/Panel/TypeValue"
+	_hud_damage = $"HUD/Panel/DamageValue"
+	_hud_speed  = $"HUD/Panel/SpeedValue"
+	_hud_type   = $"HUD/Panel/TypeValue"
 	
 	gravity *= gravity_mult
 	

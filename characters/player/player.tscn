@@ -34,61 +34,65 @@ __meta__ = {
 }
 mouse_buttons_for_swipe_started = [ 1 ]
 
-[node name="Control" type="Control" parent="."]
+[node name="HUD" type="Control" parent="."]
+editor/display_folded = true
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Panel" type="Panel" parent="Control"]
+[node name="Panel" type="Panel" parent="HUD"]
 margin_left = 40.0
 margin_top = 40.0
-margin_right = 150.0
-margin_bottom = 140.0
+margin_right = 175.0
+margin_bottom = 115.0
 
-[node name="Damage" type="Label" parent="Control/Panel"]
+[node name="Damage" type="Label" parent="HUD/Panel"]
+anchor_right = 1.0
 margin_left = 10.0
-margin_right = 160.0
-margin_bottom = 40.0
+margin_top = 10.0
+margin_right = -44.0
+margin_bottom = 24.0
 text = "Damage:"
 valign = 1
 
-[node name="DamageValue" type="Label" parent="Control/Panel"]
-margin_left = 72.0
-margin_right = 160.0
-margin_bottom = 40.0
+[node name="DamageValue" type="Label" parent="HUD/Panel"]
+margin_left = 70.0
+margin_top = 10.0
+margin_right = 78.0
+margin_bottom = 24.0
 custom_colors/font_color = Color( 1, 0.427451, 0.427451, 1 )
 text = "0"
 valign = 1
 
-[node name="Speed" type="Label" parent="Control/Panel"]
+[node name="Speed" type="Label" parent="HUD/Panel"]
 margin_left = 10.0
-margin_top = 20.0
-margin_right = 160.0
-margin_bottom = 60.0
+margin_top = 30.0
+margin_right = 53.0
+margin_bottom = 44.0
 text = "Speed:"
 valign = 1
 
-[node name="SpeedValue" type="Label" parent="Control/Panel"]
-margin_left = 72.0
-margin_top = 19.9446
-margin_right = 160.0
-margin_bottom = 59.9446
+[node name="SpeedValue" type="Label" parent="HUD/Panel"]
+margin_left = 70.0
+margin_top = 30.0
+margin_right = 78.0
+margin_bottom = 44.0
 custom_colors/font_color = Color( 1, 0.427451, 0.427451, 1 )
 text = "0"
 valign = 1
 
-[node name="Type" type="Label" parent="Control/Panel"]
+[node name="Type" type="Label" parent="HUD/Panel"]
 margin_left = 10.0
 margin_top = 50.0
-margin_right = 160.0
-margin_bottom = 60.0
+margin_right = 44.0
+margin_bottom = 64.0
 text = "Type:"
 valign = 1
 
-[node name="TypeValue" type="Label" parent="Control/Panel"]
+[node name="TypeValue" type="Label" parent="HUD/Panel"]
 margin_left = 50.0
 margin_top = 50.0
-margin_right = 160.0
-margin_bottom = 59.9446
+margin_right = 98.0
+margin_bottom = 64.0
 custom_colors/font_color = Color( 1, 0.427451, 0.427451, 1 )
 text = "left_top"
 valign = 1
