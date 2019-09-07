@@ -45,6 +45,11 @@ func _input(ev):
 		_speed = max_speed
 	elif Input.is_action_just_released("move_run"):
 		_speed = normal_speed
+	elif ev is InputEventMouseButton:
+		if (ev.is_pressed() and ev.button_index == BUTTON_LEFT):
+			$CustomCursor/MouseTrail.emitting = true
+		else:
+			$CustomCursor/MouseTrail.emitting = false
 
 func _physics_process(delta):
 	# PLAYER MOVEMENT

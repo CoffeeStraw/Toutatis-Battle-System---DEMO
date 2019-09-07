@@ -67,6 +67,7 @@ mesh = SubResource( 5 )
 material/0 = null
 
 [node name="DummyStaticBody" type="StaticBody" parent="."]
+editor/display_folded = true
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 10.5 )
 
 [node name="Dummy" parent="DummyStaticBody" instance=ExtResource( 2 )]

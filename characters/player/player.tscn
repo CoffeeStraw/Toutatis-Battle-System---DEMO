@@ -1,13 +1,36 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://characters/player/player.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/char_setup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/player/camera_follow.gd" type="Script" id=3]
 [ext_resource path="res://addons/swipe-detector/swipe_detector.gd" type="Script" id=4]
 [ext_resource path="res://addons/swipe-detector/icon.png" type="Texture" id=5]
+[ext_resource path="res://characters/player/FollowCursor.gd" type="Script" id=6]
+[ext_resource path="res://assets/Cursor.png" type="Texture" id=7]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.57, 2.26, 1 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.992593, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.431373, 1, 1, 1, 0, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.7156 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -96,5 +119,17 @@ margin_bottom = 64.0
 custom_colors/font_color = Color( 1, 0.427451, 0.427451, 1 )
 text = "left_top"
 valign = 1
+
+[node name="CustomCursor" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="MouseTrail" type="Particles2D" parent="CustomCursor"]
+position = Vector2( 19, 19 )
+emitting = false
+amount = 20
+speed_scale = 2.0
+local_coords = false
+process_material = SubResource( 6 )
+texture = ExtResource( 7 )
 
 [connection signal="swiped" from="SwipeDetector" to="." method="_on_SwipeDetector_swiped"]
