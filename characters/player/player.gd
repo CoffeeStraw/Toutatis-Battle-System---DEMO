@@ -2,7 +2,7 @@
 
 extends KinematicBody
 
-#  User Settings
+# User Settings
 export (float, 1.0, 100.0) var normal_speed = 6
 export (float, 1.0, 100.0) var max_speed = 15
 export (float, 1.0, 100.0) var acc = 3
@@ -47,9 +47,9 @@ func _input(ev):
 		_speed = normal_speed
 	elif ev is InputEventMouseButton:
 		if (ev.is_pressed() and ev.button_index == BUTTON_LEFT):
-			$CustomCursor/MouseTrail.emitting = true
+			$Trail.visible = true
 		else:
-			$CustomCursor/MouseTrail.emitting = false
+			$Trail.visible = false
 
 func _physics_process(delta):
 	# PLAYER MOVEMENT
@@ -92,7 +92,8 @@ func _physics_process(delta):
 		var char_rot = _character.get_rotation()
 		char_rot.y = angle
 		_character.set_rotation(char_rot)
-		
+	
+	# Animation walk/run
 	var speed_blend = hv.length() * 2 / max_speed
 	_anim_tree.set("parameters/Idle_Walk/blend_amount", speed_blend)
 	_anim_tree.set("parameters/Idle_Run/blend_amount", speed_blend)
