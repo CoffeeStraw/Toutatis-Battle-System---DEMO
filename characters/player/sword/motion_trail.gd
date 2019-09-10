@@ -6,10 +6,12 @@ extends ImmediateGeometry
 
 var is_enabled = false
 
-var points = []
-var points2 = []
+var points  = []
+var widths  = []
 var lifePoints = []
 export var width = 0.5
+export var decrementWidth = true
+export(float, 0.5, 1.5, 0.1) var accelerationDecrementWidth = 1.0
 export var motionDelta = 0.1
 export var lifespan = 1.0
 export var scaleTexture = true
@@ -46,35 +48,39 @@ func _process(delta):
 	
 	begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
 	for i in range(points.size()):
-		var t = float(i + 1) / points.size()
+		var t = float(i) / (points.size() - 1.0)
 		var currColor = startColor.linear_interpolate(endColor, 1 - t)
 		set_color(currColor)
+		
+		var currWidth
+		if decrementWidth:
+			currWidth = pow(t, accelerationDecrementWidth)*widths[i]
+		else:
+			currWidth = widths[i]
 		
 		if scaleTexture:
 			var t0 = motionDelta * i
 			var t1 = motionDelta * (i + 1)
 			set_uv(Vector2(t0, 0))
-			add_vertex(to_local(points[i]))
+			add_vertex(to_local(points[i] + currWidth))
 			set_uv(Vector2(t1, 1))
-			add_vertex(to_local(points2[i]))
+			add_vertex(to_local(points[i] - currWidth))
 		else:
 			var t0 = i / points.size()
 			var t1 = t
 			
 			set_uv(Vector2(t0, 0))
-			add_vertex(to_local(points[i]))
+			add_vertex(to_local(points[i] + currWidth))
 			set_uv(Vector2(t1, 1))
-			add_vertex(to_local(points2[i]))
+			add_vertex(to_local(points[i] - currWidth))
 	end()
 
 func appendPoint():
-	var widthVec = get_global_transform().basis.x * width
-	
-	points.append(get_global_transform().origin + widthVec)
-	points2.append(get_global_transform().origin - widthVec)
+	points.append(get_global_transform().origin)
+	widths.append(get_global_transform().basis.x * width)
 	lifePoints.append(0.0)
 	
 func removePoint(i):
 	points.remove(i)
-	points2.remove(i)
+	widths.remove(i)
 	lifePoints.remove(i)

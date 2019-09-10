@@ -85,10 +85,6 @@ shape = SubResource( 9 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 11 )
 
-[node name="GIProbe" type="GIProbe" parent="."]
-visible = false
-extents = Vector3( 40, 40, 40 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.937353, -0.284697, -0.200792, 0.335053, 0.578805, 0.743454, -0.0954397, -0.764155, 0.637933, 3.28184, 11.5273, 3.10169 )
 light_color = Color( 1, 0.992157, 0.847059, 1 )

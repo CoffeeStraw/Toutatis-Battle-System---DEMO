@@ -70,7 +70,7 @@ nodes/Idle_Walk/position = Vector2( 220, 160 )
 nodes/Walk_Run/node = SubResource( 13 )
 nodes/Walk_Run/position = Vector2( 480, 280 )
 nodes/output/position = Vector2( 980, 500 )
-node_connections = [ "output", 0, "AttackShot", "Walk_Run", 0, "Idle_Walk", "Walk_Run", 1, "Idle_Run", "Idle_Walk", 0, "Idle", "Idle_Walk", 1, "Animation", "AttackShot", 0, "Walk_Run", "AttackShot", 1, "AttackSpeed", "Idle_Run", 0, "Animation 2", "Idle_Run", 1, "Animation 3", "AttackSpeed", 0, "Attacks" ]
+node_connections = [ "output", 0, "AttackShot", "AttackShot", 0, "Walk_Run", "AttackShot", 1, "AttackSpeed", "AttackSpeed", 0, "Attacks", "Idle_Run", 0, "Animation 2", "Idle_Run", 1, "Animation 3", "Idle_Walk", 0, "Idle", "Idle_Walk", 1, "Animation", "Walk_Run", 0, "Idle_Walk", "Walk_Run", 1, "Idle_Run" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 
@@ -91,7 +91,7 @@ parameters/Idle_Walk/blend_amount = 0.0
 parameters/Walk_Run/blend_amount = 0.0
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.2276, 0.836553, 0.498375, -0.784262, -0.460846, 0.415399, 0.577177, -0.296311, 0.760965, 0.875903, 0.107238, -0.458914 )
+transform = Transform( -0.2276, 0.836553, 0.498375, -0.774825, -0.465578, 0.427651, 0.589785, -0.28882, 0.754148, 0.875903, 0.103043, -0.448732 )
 bone_name = "finger.R"
 
 [node name="Sword" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]
