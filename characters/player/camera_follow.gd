@@ -21,7 +21,7 @@ func _ready():
 	set_physics_process(true)
 	set_as_toplevel(true)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	camera_move_and_rot()
 	mouse_look()
 	

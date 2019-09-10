@@ -15,7 +15,7 @@ animation = "walking_loop"
 [sub_resource type="AnimationNodeOneShot" id=4]
 filter_enabled = true
 filters = [ ".:arm.R", ".:finger.R", ".:finger2.R", ".:forearm.R", ".:hand.R", ".:shoulder.R", ".:spine", ".:thumb.R", ".:thumb2.R" ]
-fadeout_time = 0.5
+fadeout_time = 0.3
 autorestart_random_delay = 379.667
 
 [sub_resource type="AnimationNodeTimeScale" id=5]
@@ -33,7 +33,7 @@ animation = "attack_right"
 states/attack_down/node = SubResource( 6 )
 states/attack_down/position = Vector2( 590, 303 )
 states/attack_left/node = SubResource( 7 )
-states/attack_left/position = Vector2( 400, 192 )
+states/attack_left/position = Vector2( 401, 192 )
 states/attack_right/node = SubResource( 8 )
 states/attack_right/position = Vector2( 777, 192 )
 graph_offset = Vector2( 70.3559, -5.69492 )
@@ -48,7 +48,7 @@ animation = "idle_loop"
 [sub_resource type="AnimationNodeBlend2" id=13]
 
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( 0, 455.5 )
+graph_offset = Vector2( 0, 444.5 )
 nodes/Animation/node = SubResource( 3 )
 nodes/Animation/position = Vector2( -20, 260 )
 "nodes/Animation 2/node" = SubResource( 1 )
@@ -70,14 +70,11 @@ nodes/Idle_Walk/position = Vector2( 220, 160 )
 nodes/Walk_Run/node = SubResource( 13 )
 nodes/Walk_Run/position = Vector2( 480, 280 )
 nodes/output/position = Vector2( 980, 500 )
-node_connections = [ "output", 0, "AttackShot", "AttackShot", 0, "Walk_Run", "AttackShot", 1, "AttackSpeed", "AttackSpeed", 0, "Attacks", "Idle_Walk", 0, "Idle", "Idle_Walk", 1, "Animation", "Walk_Run", 0, "Idle_Walk", "Walk_Run", 1, "Idle_Run", "Idle_Run", 0, "Animation 2", "Idle_Run", 1, "Animation 3" ]
+node_connections = [ "output", 0, "AttackShot", "Walk_Run", 0, "Idle_Walk", "Walk_Run", 1, "Idle_Run", "Idle_Walk", 0, "Idle", "Idle_Walk", 1, "Animation", "AttackShot", 0, "Walk_Run", "AttackShot", 1, "AttackSpeed", "Idle_Run", 0, "Animation 2", "Idle_Run", 1, "Animation 3", "AttackSpeed", 0, "Attacks" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 
-[node name="Character Setup" index="0" instance=ExtResource( 1 )]
-
-[node name="Armature" parent="." index="0"]
-bones/19/bound_children = [ NodePath("BoneAttachment") ]
+[node name="Character Setup" instance=ExtResource( 1 )]
 
 [node name="AnimationPlayer" parent="Armature" index="0"]
 playback_speed = 1.15
@@ -94,7 +91,7 @@ parameters/Idle_Walk/blend_amount = 0.0
 parameters/Walk_Run/blend_amount = 0.0
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.2276, 0.836553, 0.498375, -0.774382, -0.465795, 0.428218, 0.590367, -0.288469, 0.753826, 0.875903, 0.102851, -0.448256 )
+transform = Transform( -0.2276, 0.836553, 0.498375, -0.784262, -0.460846, 0.415399, 0.577177, -0.296311, 0.760965, 0.875903, 0.107238, -0.458914 )
 bone_name = "finger.R"
 
 [node name="Sword" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]

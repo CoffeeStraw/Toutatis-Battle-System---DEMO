@@ -22,6 +22,9 @@ var _hud_damage
 var _hud_speed
 var _hud_type
 
+var _sword_swing_audio
+var _sound_thread
+
 var _speed = normal_speed
 var _velocity = Vector3()
 var _walk_run_blend = 0.0
@@ -36,6 +39,8 @@ func _ready():
 	_anim_attacks = _anim_tree['parameters/Attacks/playback']
 	_sword_collision = $"Character Models and Stuff/Armature/BoneAttachment/Sword/RigidBody/CollisionShape"
 	_sword_trail = $"Character Models and Stuff/Armature/BoneAttachment/Sword/Trail/ImmediateGeometry"
+	
+	_sword_swing_audio = $"SwordSwingAudio"
 	
 	_hud_damage = $"HUD/Panel/DamageValue"
 	_hud_speed  = $"HUD/Panel/SpeedValue"
@@ -118,7 +123,7 @@ func _on_SwipeDetector_swiped(gesture):
 	# Check if some animation is already playing, if true then ignore the swipe
 	if _anim_tree.get("parameters/AttackShot/active"):
 		return
-
+	
 	# Saving animation name
 	var anim_name = "attack_" + str( gesture.get_direction() )
 	
@@ -139,12 +144,26 @@ func _on_SwipeDetector_swiped(gesture):
 	
 	var attack_speed = 1 + anim_speed_fix + (100.0-power) * 3 / 100
 	
-	# Enabling attack animation
-	_anim_attacks.start(anim_name)
-	_anim_tree.set("parameters/AttackShot/active", true)
-	_anim_tree.set("parameters/AttackSpeed/scale", attack_speed)
+	# Check if animation exists, else skip animation and audio execution
+	if($"Character Models and Stuff/Armature/AnimationPlayer".get_animation(anim_name)):
+		# Activate sound after some delay
+		var animation_length = $"Character Models and Stuff/Armature/AnimationPlayer".get_animation(anim_name).get_length() / attack_speed
+		_sound_thread = Thread.new()
+		_sound_thread.start(self, "play_sound", animation_length)
+		
+		# Enabling attack animation
+		_anim_attacks.start(anim_name)
+		_anim_tree.set("parameters/AttackShot/active", true)
+		_anim_tree.set("parameters/AttackSpeed/scale", attack_speed)
 	
 	# Setting texts' HUD
 	_hud_damage.set_text(str(int(power)))
 	_hud_speed.set_text(str(float(attack_speed)))
 	_hud_type.set_text(str(gesture.get_direction()))
+
+func play_sound(animation_length):
+	# Note that 0.41551 is the length of the sound
+	yield(get_tree().create_timer(animation_length/2.2), "timeout")
+	_sword_swing_audio.set_pitch_scale(0.41551 / animation_length * 1.6) # 1.6 is a fix to let the sound ends faster
+	_sword_swing_audio.play()
+	_sound_thread.wait_to_finish()

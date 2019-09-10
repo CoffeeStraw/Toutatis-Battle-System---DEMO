@@ -15,7 +15,9 @@ func _process(delta):
 		_point.y += _offset.y
 		add_point( _point )
 	else:
-		remove_point(0)
+		if get_point_count() != 0:
+			remove_point(0)
 	
 	while(get_point_count() > trail_length):
-		remove_point(0)
+		if get_point_count() != 0:
+			remove_point(0)
