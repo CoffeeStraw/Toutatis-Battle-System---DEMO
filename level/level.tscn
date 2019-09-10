@@ -74,7 +74,7 @@ mesh = SubResource( 5 )
 material/0 = null
 
 [node name="DummyStaticBody" type="StaticBody" parent="."]
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0, 10.5 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 10.5 )
 
 [node name="Dummy" parent="DummyStaticBody" instance=ExtResource( 2 )]
 
@@ -93,3 +93,4 @@ extents = Vector3( 40, 40, 40 )
 transform = Transform( 0.937353, -0.284697, -0.200792, 0.335053, 0.578805, 0.743454, -0.0954397, -0.764155, 0.637933, 3.28184, 11.5273, 3.10169 )
 light_color = Color( 1, 0.992157, 0.847059, 1 )
 shadow_enabled = true
+
