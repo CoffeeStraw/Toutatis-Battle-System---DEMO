@@ -16,6 +16,7 @@ var _anim_attacks
 var _anim_tree
 
 var _sword_collision
+var _sword_trail
 
 var _hud_damage
 var _hud_speed
@@ -31,8 +32,10 @@ func _ready():
 	_character    = $"Character Models and Stuff"
 	_anim_tree    = $"Character Models and Stuff/Armature/AnimationTree"
 	_anim_tree.active = true
+	
 	_anim_attacks = _anim_tree['parameters/Attacks/playback']
-	_sword_collision = $"Character Models and Stuff/Armature/BoneAttachment/Sword/StaticBody/CollisionShape"
+	_sword_collision = $"Character Models and Stuff/Armature/BoneAttachment/Sword/RigidBody/CollisionShape"
+	_sword_trail = $"Character Models and Stuff/Armature/BoneAttachment/Sword/Trail/ImmediateGeometry"
 	
 	_hud_damage = $"HUD/Panel/DamageValue"
 	_hud_speed  = $"HUD/Panel/SpeedValue"
@@ -47,9 +50,9 @@ func _input(ev):
 		_speed = normal_speed
 	elif ev is InputEventMouseButton:
 		if (ev.is_pressed() and ev.button_index == BUTTON_LEFT):
-			$Trail.visible = true
+			$Trail.is_enabled = true
 		else:
-			$Trail.visible = false
+			$Trail.is_enabled = false
 
 func _physics_process(delta):
 	# PLAYER MOVEMENT
@@ -104,8 +107,18 @@ func _physics_process(delta):
 		_walk_run_blend = clamp(_walk_run_blend+0.1, 0.0, 1.0)
 
 	_anim_tree.set("parameters/Walk_Run/blend_amount", _walk_run_blend)
+	
+	# Improvable: Checking if some attack animation is running, then activate trail for sword
+	if _anim_tree.get("parameters/AttackShot/active") and not _sword_trail.is_enabled:
+		_sword_trail.is_enabled = true
+	elif not _anim_tree.get("parameters/AttackShot/active"):
+		_sword_trail.is_enabled = false
 
 func _on_SwipeDetector_swiped(gesture):
+	# Check if some animation is already playing, if true then ignore the swipe
+	if _anim_tree.get("parameters/AttackShot/active"):
+		return
+
 	# Saving animation name
 	var anim_name = "attack_" + str( gesture.get_direction() )
 	
@@ -131,7 +144,7 @@ func _on_SwipeDetector_swiped(gesture):
 	_anim_tree.set("parameters/AttackShot/active", true)
 	_anim_tree.set("parameters/AttackSpeed/scale", attack_speed)
 	
-	# Setitng HUD
+	# Setting texts' HUD
 	_hud_damage.set_text(str(int(power)))
 	_hud_speed.set_text(str(float(attack_speed)))
 	_hud_type.set_text(str(gesture.get_direction()))
