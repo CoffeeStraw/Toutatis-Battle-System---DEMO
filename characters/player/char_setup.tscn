@@ -91,7 +91,7 @@ parameters/Idle_Walk/blend_amount = 0.0
 parameters/Walk_Run/blend_amount = 0.0
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.2276, 0.836553, 0.498375, -0.774825, -0.465578, 0.427651, 0.589785, -0.28882, 0.754148, 0.875903, 0.103043, -0.448732 )
+transform = Transform( -0.2276, 0.836553, 0.498375, -0.798818, -0.453089, 0.395731, 0.556857, -0.308042, 0.771376, 0.875903, 0.114133, -0.474767 )
 bone_name = "finger.R"
 
 [node name="Sword" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]

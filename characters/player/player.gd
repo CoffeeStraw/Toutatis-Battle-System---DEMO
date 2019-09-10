@@ -114,10 +114,10 @@ func _physics_process(delta):
 	_anim_tree.set("parameters/Walk_Run/blend_amount", _walk_run_blend)
 	
 	# Improvable: Checking if some attack animation is running, then activate trail for sword
-	if _anim_tree.get("parameters/AttackShot/active") and not _sword_trail.is_enabled:
-		_sword_trail.is_enabled = true
+	if _anim_tree.get("parameters/AttackShot/active") and not _sword_trail.trailEnabled:
+		_sword_trail.trailEnabled = true
 	elif not _anim_tree.get("parameters/AttackShot/active"):
-		_sword_trail.is_enabled = false
+		_sword_trail.trailEnabled = false
 
 func _on_SwipeDetector_swiped(gesture):
 	# Check if some animation is already playing, if true then ignore the swipe

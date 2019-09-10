@@ -1,19 +1,20 @@
-# Author: dbp8890
-# Edits: CoffeeStraw
-# GitHub: https://github.com/dbp8890/motion-trails
+# GitHub Project Page: https://github.com/dbp8890/motion-trails
 
 extends ImmediateGeometry
-
-var is_enabled = false
 
 var points  = []
 var widths  = []
 var lifePoints = []
-export var width = 0.5
-export var decrementWidth = true
-export(float, 0.5, 1.5, 0.1) var accelerationDecrementWidth = 1.0
+
+export var trailEnabled = true
+
+export var fromWidth = 0.5
+export var toWidth = 0.0
+export(float, 0.5, 1.5) var scaleAcceleration = 1.0
+
 export var motionDelta = 0.1
 export var lifespan = 1.0
+
 export var scaleTexture = true
 export var startColor = Color(1.0, 1.0, 1.0, 1.0)
 export var endColor = Color(1.0, 1.0, 1.0, 0.0)
@@ -25,7 +26,7 @@ func _ready():
 
 func _process(delta):
 	
-	if (oldPos - get_global_transform().origin).length() > motionDelta and is_enabled:
+	if (oldPos - get_global_transform().origin).length() > motionDelta and trailEnabled:
 		appendPoint()
 		oldPos = get_global_transform().origin
 	
@@ -52,11 +53,7 @@ func _process(delta):
 		var currColor = startColor.linear_interpolate(endColor, 1 - t)
 		set_color(currColor)
 		
-		var currWidth
-		if decrementWidth:
-			currWidth = pow(t, accelerationDecrementWidth)*widths[i]
-		else:
-			currWidth = widths[i]
+		var currWidth = widths[i][0] - pow(1-t, scaleAcceleration) * widths[i][1]
 		
 		if scaleTexture:
 			var t0 = motionDelta * i
@@ -77,7 +74,9 @@ func _process(delta):
 
 func appendPoint():
 	points.append(get_global_transform().origin)
-	widths.append(get_global_transform().basis.x * width)
+	widths.append([
+		get_global_transform().basis.x * fromWidth,
+		get_global_transform().basis.x * fromWidth - get_global_transform().basis.x * toWidth])
 	lifePoints.append(0.0)
 	
 func removePoint(i):
