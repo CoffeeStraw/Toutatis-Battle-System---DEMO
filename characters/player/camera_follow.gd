@@ -12,8 +12,13 @@ var _yaw = 0.0
 var _pitch = 0.0
 
 func _ready():
+	# Fixing Window position
+	var screen_size = OS.get_screen_size()
+	var window_size = OS.get_window_size()
+	OS.set_window_position(screen_size/2 - window_size/2)
+	
 	# Confining mouse movement in viewport
-	Input.set_mouse_mode(3)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	# Moving mouse initial position to center of screen
 	get_viewport().warp_mouse( get_viewport().size / 2 )
 	

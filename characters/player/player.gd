@@ -94,7 +94,7 @@ func _physics_process(delta):
 	_velocity.x = hv.x
 	_velocity.y += delta * gravity
 	_velocity.z = hv.z
-	_velocity = move_and_slide(_velocity, Vector3(0,1,0))
+	_velocity = move_and_slide(_velocity, Vector3(0,1,0), true) # Doesn't slide on slopes
 	
 	# If the player is moving, rotate him
 	if(dir != Vector3(0,0,0)):

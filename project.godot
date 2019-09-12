@@ -16,13 +16,15 @@ _global_script_class_icons={
 [application]
 
 config/name="Toutatis Battle System - DEMO"
-run/main_scene="res://level/level.tscn"
+run/main_scene="res://nature_level/nature_level.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=1920
+window/size/height=1080
+window/size/test_width=1280
+window/size/test_height=720
 mouse_cursor/custom_image="res://assets/Cursor.png"
 
 [editor_plugins]
