@@ -26,11 +26,11 @@ Developers:
 - [x] Walking (loop)
 - [x] Running (loop)
 - [ ] Attacks
-  - [ ] LEFT corner to RIGHT corner             (→)
+  - [x] LEFT corner to RIGHT corner             (→)
   - [ ] TOP_LEFT corner to BOTTOM_RIGHT corner  (↘)
-  - [ ] TOP corner to BOTTOM corner             (↓)
+  - [x] TOP corner to BOTTOM corner             (↓)
   - [ ] TOP_RIGHT corner to BOTTOM_LEFT corner  (↙)
-  - [ ] RIGHT corner to LEFT corner             (←)
+  - [x] RIGHT corner to LEFT corner             (←)
   - [ ] BOTTOM_RIGHT corner to TOP_LEFT corner  (↖)
   - [ ] BOTTOM corner to TOP corner             (↑)
   - [ ] BOTTOM_LEFT corner to TOP_RIGHT corner  (↗)
@@ -80,4 +80,4 @@ Developers:
 - [ ] Font and color for damage number
 - [ ] Title Screen mockup
 - [ ] Pause Menu mockup
-- [x] [Mouse icon](https://docs.godotengine.org/en/3.0/tutorials/inputs/custom_mouse_cursor.html)
+- [x] Mouse icon
