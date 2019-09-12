@@ -16,9 +16,11 @@ params_cull_mode = 2
 [node name="Sword" parent="." index="0"]
 transform = Transform( 0.541801, 0, 0, 0, 0.541801, 0, 0, 0, 1, 0, 0, 0.07 )
 
-[node name="RigidBody" type="RigidBody" parent="." index="1"]
+[node name="Area" type="Area" parent="." index="1"]
+collision_layer = 4
+collision_mask = 8
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
 transform = Transform( 0.18963, 0, 0, 0, -1.6578e-09, -0.720595, 0, 0.07, -5.81361e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 

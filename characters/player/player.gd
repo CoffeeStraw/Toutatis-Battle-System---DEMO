@@ -31,20 +31,22 @@ var _walk_run_blend = 0.0
 var gravity = -9.81
 
 func _ready():
-	_camera       = $"Target/Camera"
-	_character    = $"Character Models and Stuff"
-	_anim_tree    = $"Character Models and Stuff/Armature/AnimationTree"
+	_camera       = $Target/Camera
+	_character    = $ModelsAnimations
+	_anim_tree    = $ModelsAnimations/Armature/AnimationTree
 	_anim_tree.active = true
 	
 	_anim_attacks = _anim_tree['parameters/Attacks/playback']
-	_sword_collision = $"Character Models and Stuff/Armature/BoneAttachment/Sword/RigidBody/CollisionShape"
-	_sword_trail = $"Character Models and Stuff/Armature/BoneAttachment/Sword/Trail/ImmediateGeometry"
+	_sword_collision = $ModelsAnimations/Armature/BoneAttachment/Sword/RigidBody/CollisionShape
+	_sword_trail = $ModelsAnimations/Armature/BoneAttachment/Sword/Trail/ImmediateGeometry
+	#warning-ignore:return_value_discarded
+	$ModelsAnimations/Armature/BoneAttachment/Sword/Area.connect("body_entered", self, "_on_Enemy_Hitten")
 	
-	_sword_swing_audio = $"SwordSwingAudio"
+	_sword_swing_audio = $SwordSwingAudio
 	
-	_hud_damage = $"HUD/Panel/DamageValue"
-	_hud_speed  = $"HUD/Panel/SpeedValue"
-	_hud_type   = $"HUD/Panel/TypeValue"
+	_hud_damage = $HUD/Panel/DamageValue
+	_hud_speed  = $HUD/Panel/SpeedValue
+	_hud_type   = $HUD/Panel/TypeValue
 	
 	gravity *= gravity_mult
 	
@@ -55,9 +57,9 @@ func _input(ev):
 		_speed = normal_speed
 	elif ev is InputEventMouseButton:
 		if (ev.is_pressed() and ev.button_index == BUTTON_LEFT):
-			$Trail.is_enabled = true
+			$MouseSystem/MouseTrail.is_enabled = true
 		else:
-			$Trail.is_enabled = false
+			$MouseSystem/MouseTrail.is_enabled = false
 
 func _physics_process(delta):
 	# PLAYER MOVEMENT
@@ -145,9 +147,9 @@ func _on_SwipeDetector_swiped(gesture):
 	var attack_speed = 1 + anim_speed_fix + (100.0-power) * 3 / 100
 	
 	# Check if animation exists, else skip animation and audio execution
-	if($"Character Models and Stuff/Armature/AnimationPlayer".get_animation(anim_name)):
+	if($ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name)):
 		# Activate sound after some delay
-		var animation_length = $"Character Models and Stuff/Armature/AnimationPlayer".get_animation(anim_name).get_length() / attack_speed
+		var animation_length = $ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name).get_length() / attack_speed
 		_sound_thread = Thread.new()
 		_sound_thread.start(self, "play_sound", animation_length)
 		
@@ -167,3 +169,7 @@ func play_sound(animation_length):
 	_sword_swing_audio.set_pitch_scale(0.41551 / animation_length * 1.6) # 1.6 is a fix to let the sound ends faster
 	_sword_swing_audio.play()
 	_sound_thread.wait_to_finish()
+	
+func _on_Enemy_Hitten(body):
+	print(body)
+	print("Hit!\n")
