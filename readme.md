@@ -9,6 +9,7 @@ Developers:
 ## TASKS
 
 ### 3D Models Low-poly
+- [x] Nature Scene
 - [x] Main Character
 - [x] Sword
 - [ ] Enemies
