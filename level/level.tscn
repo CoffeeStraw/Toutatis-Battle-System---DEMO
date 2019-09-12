@@ -23,11 +23,11 @@ albedo_color = Color( 0.0313726, 1, 0, 1 )
 
 [sub_resource type="SpatialMaterial" id=8]
 
-[sub_resource type="ProceduralSky" id=10]
+[sub_resource type="ProceduralSky" id=9]
 
-[sub_resource type="Environment" id=11]
+[sub_resource type="Environment" id=10]
 background_mode = 2
-background_sky = SubResource( 10 )
+background_sky = SubResource( 9 )
 tonemap_mode = 2
 
 [node name="Spatial" type="Spatial"]
@@ -75,7 +75,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.8313 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 11 )
+environment = SubResource( 10 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.937353, -0.284697, -0.200792, 0.335053, 0.578805, 0.743454, -0.0954397, -0.764155, 0.637933, 3.28184, 11.5273, 3.10169 )
