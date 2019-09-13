@@ -815,7 +815,7 @@ autoplay = true
 environment = ExtResource( 3 )
 
 [node name="Sun" parent="." index="2"]
-transform = Transform( 0.851711, 0.0760471, 0.518464, -0.217595, -0.848751, 0.481948, 0.476698, -0.523296, -0.706343, 22.4257, 41.0812, -153.987 )
+transform = Transform( -0.901614, -0.213408, 0.376231, 0, 0.869814, 0.49338, -0.432542, 0.444838, -0.784236, 70.166, 45.151, -153.987 )
 light_color = Color( 1, 0.666667, 0, 1 )
 light_energy = 2.5
 
