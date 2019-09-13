@@ -37,7 +37,7 @@ func _ready():
 	_anim_tree.active = true
 	
 	_anim_attacks = _anim_tree['parameters/Attacks/playback']
-	_sword_collision = $ModelsAnimations/Armature/BoneAttachment/Sword/RigidBody/CollisionShape
+	_sword_collision = $ModelsAnimations/Armature/BoneAttachment/Sword/Area/CollisionShape
 	_sword_trail = $ModelsAnimations/Armature/BoneAttachment/Sword/Trail/ImmediateGeometry
 	#warning-ignore:return_value_discarded
 	$ModelsAnimations/Armature/BoneAttachment/Sword/Area.connect("body_entered", self, "_on_Enemy_Hitten")
@@ -98,10 +98,9 @@ func _physics_process(delta):
 	
 	# If the player is moving, rotate him
 	if(dir != Vector3(0,0,0)):
-		var angle = atan2(_velocity.x, _velocity.z)
-		var char_rot = _character.get_rotation()
-		char_rot.y = angle
-		_character.set_rotation(char_rot)
+		# Rotating basing on global rotation
+		var angle = atan2(_velocity.x, _velocity.z) - _character.global_transform.basis.get_euler().y
+		_character.global_rotate(Vector3(0,1,0), angle)
 	
 	# Animation walk/run
 	var speed_blend = hv.length() * 2 / max_speed
