@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/birds.ogg-d12a1c3302d2b624966d00847af308e0.oggstr"
+
+[deps]
+
+source_file="res://nature_level/sounds/birds.ogg"
+dest_files=[ "res://.import/birds.ogg-d12a1c3302d2b624966d00847af308e0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

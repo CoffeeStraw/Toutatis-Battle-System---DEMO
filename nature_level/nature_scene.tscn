@@ -1,7 +1,9 @@
-[gd_scene load_steps=120 format=2]
+[gd_scene load_steps=122 format=2]
 
 [ext_resource path="res://nature_level/nature_scene.escn" type="PackedScene" id=1]
-[ext_resource path="res://nature_level/nature_env.tres" type="Environment" id=2]
+[ext_resource path="res://nature_level/sounds/birds.ogg" type="AudioStream" id=2]
+[ext_resource path="res://nature_level/nature_env.tres" type="Environment" id=3]
+[ext_resource path="res://nature_level/sounds/fire.ogg" type="AudioStream" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -740,7 +742,7 @@ params_blend_mode = 1
 
 [sub_resource type="Gradient" id=105]
 offsets = PoolRealArray( 0, 0.591133 )
-colors = PoolColorArray( 1, 0, 0, 1, 0.0859375, 0, 0, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 1 )
 
 [sub_resource type="GradientTexture" id=106]
 gradient = SubResource( 105 )
@@ -803,15 +805,21 @@ size = Vector3( 1, 1, 1 )
 
 [node name="NatureScene" index="0" instance=ExtResource( 1 )]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
-environment = ExtResource( 2 )
+[node name="BirdsSound" type="AudioStreamPlayer2D" parent="." index="0"]
+position = Vector2( 960, 540 )
+stream = ExtResource( 2 )
+volume_db = -20.0
+autoplay = true
 
-[node name="Sun" parent="." index="1"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
+environment = ExtResource( 3 )
+
+[node name="Sun" parent="." index="2"]
 transform = Transform( 0.851711, 0.0760471, 0.518464, -0.217595, -0.848751, 0.481948, 0.476698, -0.523296, -0.706343, 22.4257, 41.0812, -153.987 )
 light_color = Color( 1, 0.666667, 0, 1 )
 light_energy = 2.5
 
-[node name="Terrain" parent="." index="2"]
+[node name="Terrain" parent="." index="3"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="Terrain" index="0"]
@@ -822,10 +830,10 @@ physics_material_override = SubResource( 1 )
 visible = false
 shape = SubResource( 2 )
 
-[node name="Water" parent="." index="3"]
+[node name="Water" parent="." index="4"]
 material/0 = SubResource( 4 )
 
-[node name="MyTree" parent="." index="4"]
+[node name="MyTree" parent="." index="5"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree" index="0"]
@@ -833,7 +841,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree/StaticBody" index="0"]
 shape = SubResource( 5 )
 
-[node name="MyTree001" parent="." index="5"]
+[node name="MyTree001" parent="." index="6"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree001" index="0"]
@@ -841,7 +849,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree001/StaticBody" index="0"]
 shape = SubResource( 6 )
 
-[node name="MyTree002" parent="." index="6"]
+[node name="MyTree002" parent="." index="7"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree002" index="0"]
@@ -849,7 +857,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree002/StaticBody" index="0"]
 shape = SubResource( 7 )
 
-[node name="MyTree003" parent="." index="7"]
+[node name="MyTree003" parent="." index="8"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree003" index="0"]
@@ -857,7 +865,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree003/StaticBody" index="0"]
 shape = SubResource( 8 )
 
-[node name="MyTree004" parent="." index="8"]
+[node name="MyTree004" parent="." index="9"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree004" index="0"]
@@ -865,7 +873,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree004/StaticBody" index="0"]
 shape = SubResource( 9 )
 
-[node name="MyTree005" parent="." index="9"]
+[node name="MyTree005" parent="." index="10"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree005" index="0"]
@@ -873,7 +881,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree005/StaticBody" index="0"]
 shape = SubResource( 10 )
 
-[node name="MyTree006" parent="." index="10"]
+[node name="MyTree006" parent="." index="11"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree006" index="0"]
@@ -881,7 +889,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree006/StaticBody" index="0"]
 shape = SubResource( 11 )
 
-[node name="MyTree007" parent="." index="11"]
+[node name="MyTree007" parent="." index="12"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree007" index="0"]
@@ -889,7 +897,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree007/StaticBody" index="0"]
 shape = SubResource( 12 )
 
-[node name="MyTree008" parent="." index="12"]
+[node name="MyTree008" parent="." index="13"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree008" index="0"]
@@ -897,7 +905,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree008/StaticBody" index="0"]
 shape = SubResource( 13 )
 
-[node name="MyTree009" parent="." index="13"]
+[node name="MyTree009" parent="." index="14"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree009" index="0"]
@@ -905,7 +913,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree009/StaticBody" index="0"]
 shape = SubResource( 14 )
 
-[node name="MyTree010" parent="." index="14"]
+[node name="MyTree010" parent="." index="15"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree010" index="0"]
@@ -913,7 +921,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree010/StaticBody" index="0"]
 shape = SubResource( 15 )
 
-[node name="MyTree011" parent="." index="15"]
+[node name="MyTree011" parent="." index="16"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree011" index="0"]
@@ -921,7 +929,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree011/StaticBody" index="0"]
 shape = SubResource( 16 )
 
-[node name="MyTree012" parent="." index="16"]
+[node name="MyTree012" parent="." index="17"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree012" index="0"]
@@ -929,7 +937,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree012/StaticBody" index="0"]
 shape = SubResource( 17 )
 
-[node name="MyTree013" parent="." index="17"]
+[node name="MyTree013" parent="." index="18"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree013" index="0"]
@@ -937,7 +945,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree013/StaticBody" index="0"]
 shape = SubResource( 18 )
 
-[node name="MyTree014" parent="." index="18"]
+[node name="MyTree014" parent="." index="19"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree014" index="0"]
@@ -945,7 +953,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree014/StaticBody" index="0"]
 shape = SubResource( 19 )
 
-[node name="MyTree015" parent="." index="19"]
+[node name="MyTree015" parent="." index="20"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree015" index="0"]
@@ -953,7 +961,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree015/StaticBody" index="0"]
 shape = SubResource( 20 )
 
-[node name="MyTree016" parent="." index="20"]
+[node name="MyTree016" parent="." index="21"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree016" index="0"]
@@ -961,7 +969,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree016/StaticBody" index="0"]
 shape = SubResource( 21 )
 
-[node name="MyTree017" parent="." index="21"]
+[node name="MyTree017" parent="." index="22"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree017" index="0"]
@@ -969,7 +977,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree017/StaticBody" index="0"]
 shape = SubResource( 22 )
 
-[node name="MyTree018" parent="." index="22"]
+[node name="MyTree018" parent="." index="23"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree018" index="0"]
@@ -977,7 +985,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree018/StaticBody" index="0"]
 shape = SubResource( 23 )
 
-[node name="MyTree019" parent="." index="23"]
+[node name="MyTree019" parent="." index="24"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree019" index="0"]
@@ -985,7 +993,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree019/StaticBody" index="0"]
 shape = SubResource( 24 )
 
-[node name="MyTree020" parent="." index="24"]
+[node name="MyTree020" parent="." index="25"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree020" index="0"]
@@ -993,7 +1001,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree020/StaticBody" index="0"]
 shape = SubResource( 25 )
 
-[node name="MyTree021" parent="." index="25"]
+[node name="MyTree021" parent="." index="26"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree021" index="0"]
@@ -1001,7 +1009,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree021/StaticBody" index="0"]
 shape = SubResource( 26 )
 
-[node name="MyTree022" parent="." index="26"]
+[node name="MyTree022" parent="." index="27"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree022" index="0"]
@@ -1009,7 +1017,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree022/StaticBody" index="0"]
 shape = SubResource( 27 )
 
-[node name="MyTree023" parent="." index="27"]
+[node name="MyTree023" parent="." index="28"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree023" index="0"]
@@ -1017,7 +1025,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree023/StaticBody" index="0"]
 shape = SubResource( 28 )
 
-[node name="MyTree024" parent="." index="28"]
+[node name="MyTree024" parent="." index="29"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree024" index="0"]
@@ -1025,7 +1033,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree024/StaticBody" index="0"]
 shape = SubResource( 29 )
 
-[node name="MyTree025" parent="." index="29"]
+[node name="MyTree025" parent="." index="30"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree025" index="0"]
@@ -1033,7 +1041,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree025/StaticBody" index="0"]
 shape = SubResource( 30 )
 
-[node name="MyTree026" parent="." index="30"]
+[node name="MyTree026" parent="." index="31"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree026" index="0"]
@@ -1041,7 +1049,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree026/StaticBody" index="0"]
 shape = SubResource( 31 )
 
-[node name="MyTree027" parent="." index="31"]
+[node name="MyTree027" parent="." index="32"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree027" index="0"]
@@ -1049,7 +1057,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree027/StaticBody" index="0"]
 shape = SubResource( 32 )
 
-[node name="MyTree028" parent="." index="32"]
+[node name="MyTree028" parent="." index="33"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree028" index="0"]
@@ -1057,7 +1065,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree028/StaticBody" index="0"]
 shape = SubResource( 33 )
 
-[node name="MyTree029" parent="." index="33"]
+[node name="MyTree029" parent="." index="34"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree029" index="0"]
@@ -1065,7 +1073,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree029/StaticBody" index="0"]
 shape = SubResource( 34 )
 
-[node name="MyTree030" parent="." index="34"]
+[node name="MyTree030" parent="." index="35"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree030" index="0"]
@@ -1073,7 +1081,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree030/StaticBody" index="0"]
 shape = SubResource( 35 )
 
-[node name="MyTree031" parent="." index="35"]
+[node name="MyTree031" parent="." index="36"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree031" index="0"]
@@ -1081,7 +1089,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree031/StaticBody" index="0"]
 shape = SubResource( 36 )
 
-[node name="MyTree032" parent="." index="36"]
+[node name="MyTree032" parent="." index="37"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree032" index="0"]
@@ -1089,7 +1097,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree032/StaticBody" index="0"]
 shape = SubResource( 37 )
 
-[node name="MyTree033" parent="." index="37"]
+[node name="MyTree033" parent="." index="38"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree033" index="0"]
@@ -1097,7 +1105,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree033/StaticBody" index="0"]
 shape = SubResource( 38 )
 
-[node name="MyTree034" parent="." index="38"]
+[node name="MyTree034" parent="." index="39"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree034" index="0"]
@@ -1105,7 +1113,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree034/StaticBody" index="0"]
 shape = SubResource( 39 )
 
-[node name="MyTree2" parent="." index="39"]
+[node name="MyTree2" parent="." index="40"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2" index="0"]
@@ -1113,7 +1121,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2/StaticBody" index="0"]
 shape = SubResource( 40 )
 
-[node name="MyTree2001" parent="." index="40"]
+[node name="MyTree2001" parent="." index="41"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2001" index="0"]
@@ -1121,7 +1129,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2001/StaticBody" index="0"]
 shape = SubResource( 41 )
 
-[node name="MyTree2002" parent="." index="41"]
+[node name="MyTree2002" parent="." index="42"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2002" index="0"]
@@ -1129,7 +1137,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2002/StaticBody" index="0"]
 shape = SubResource( 42 )
 
-[node name="MyTree2003" parent="." index="42"]
+[node name="MyTree2003" parent="." index="43"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2003" index="0"]
@@ -1137,7 +1145,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2003/StaticBody" index="0"]
 shape = SubResource( 43 )
 
-[node name="MyTree2004" parent="." index="43"]
+[node name="MyTree2004" parent="." index="44"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2004" index="0"]
@@ -1145,7 +1153,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2004/StaticBody" index="0"]
 shape = SubResource( 44 )
 
-[node name="MyTree2005" parent="." index="44"]
+[node name="MyTree2005" parent="." index="45"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2005" index="0"]
@@ -1153,7 +1161,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2005/StaticBody" index="0"]
 shape = SubResource( 45 )
 
-[node name="MyTree2006" parent="." index="45"]
+[node name="MyTree2006" parent="." index="46"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2006" index="0"]
@@ -1161,7 +1169,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2006/StaticBody" index="0"]
 shape = SubResource( 46 )
 
-[node name="MyTree2007" parent="." index="46"]
+[node name="MyTree2007" parent="." index="47"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2007" index="0"]
@@ -1169,7 +1177,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2007/StaticBody" index="0"]
 shape = SubResource( 47 )
 
-[node name="MyTree2008" parent="." index="47"]
+[node name="MyTree2008" parent="." index="48"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2008" index="0"]
@@ -1177,7 +1185,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2008/StaticBody" index="0"]
 shape = SubResource( 48 )
 
-[node name="MyTree2009" parent="." index="48"]
+[node name="MyTree2009" parent="." index="49"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2009" index="0"]
@@ -1185,7 +1193,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2009/StaticBody" index="0"]
 shape = SubResource( 49 )
 
-[node name="MyTree2010" parent="." index="49"]
+[node name="MyTree2010" parent="." index="50"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2010" index="0"]
@@ -1193,7 +1201,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2010/StaticBody" index="0"]
 shape = SubResource( 50 )
 
-[node name="MyTree2011" parent="." index="50"]
+[node name="MyTree2011" parent="." index="51"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2011" index="0"]
@@ -1201,7 +1209,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2011/StaticBody" index="0"]
 shape = SubResource( 51 )
 
-[node name="MyTree2012" parent="." index="51"]
+[node name="MyTree2012" parent="." index="52"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2012" index="0"]
@@ -1209,7 +1217,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2012/StaticBody" index="0"]
 shape = SubResource( 52 )
 
-[node name="MyTree2013" parent="." index="52"]
+[node name="MyTree2013" parent="." index="53"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2013" index="0"]
@@ -1217,7 +1225,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2013/StaticBody" index="0"]
 shape = SubResource( 53 )
 
-[node name="MyTree2014" parent="." index="53"]
+[node name="MyTree2014" parent="." index="54"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2014" index="0"]
@@ -1225,7 +1233,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2014/StaticBody" index="0"]
 shape = SubResource( 54 )
 
-[node name="MyTree2015" parent="." index="54"]
+[node name="MyTree2015" parent="." index="55"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2015" index="0"]
@@ -1233,7 +1241,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2015/StaticBody" index="0"]
 shape = SubResource( 55 )
 
-[node name="MyTree2016" parent="." index="55"]
+[node name="MyTree2016" parent="." index="56"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2016" index="0"]
@@ -1241,7 +1249,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2016/StaticBody" index="0"]
 shape = SubResource( 56 )
 
-[node name="MyTree2017" parent="." index="56"]
+[node name="MyTree2017" parent="." index="57"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2017" index="0"]
@@ -1249,7 +1257,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2017/StaticBody" index="0"]
 shape = SubResource( 57 )
 
-[node name="MyTree2018" parent="." index="57"]
+[node name="MyTree2018" parent="." index="58"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2018" index="0"]
@@ -1257,7 +1265,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2018/StaticBody" index="0"]
 shape = SubResource( 58 )
 
-[node name="MyTree2019" parent="." index="58"]
+[node name="MyTree2019" parent="." index="59"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2019" index="0"]
@@ -1265,7 +1273,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2019/StaticBody" index="0"]
 shape = SubResource( 59 )
 
-[node name="MyTree2020" parent="." index="59"]
+[node name="MyTree2020" parent="." index="60"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2020" index="0"]
@@ -1273,7 +1281,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2020/StaticBody" index="0"]
 shape = SubResource( 60 )
 
-[node name="MyTree2021" parent="." index="60"]
+[node name="MyTree2021" parent="." index="61"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2021" index="0"]
@@ -1281,7 +1289,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2021/StaticBody" index="0"]
 shape = SubResource( 61 )
 
-[node name="MyTree2022" parent="." index="61"]
+[node name="MyTree2022" parent="." index="62"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2022" index="0"]
@@ -1289,7 +1297,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2022/StaticBody" index="0"]
 shape = SubResource( 62 )
 
-[node name="MyTree2023" parent="." index="62"]
+[node name="MyTree2023" parent="." index="63"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2023" index="0"]
@@ -1297,7 +1305,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2023/StaticBody" index="0"]
 shape = SubResource( 63 )
 
-[node name="MyTree2024" parent="." index="63"]
+[node name="MyTree2024" parent="." index="64"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2024" index="0"]
@@ -1305,7 +1313,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2024/StaticBody" index="0"]
 shape = SubResource( 64 )
 
-[node name="MyTree2025" parent="." index="64"]
+[node name="MyTree2025" parent="." index="65"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2025" index="0"]
@@ -1313,7 +1321,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2025/StaticBody" index="0"]
 shape = SubResource( 65 )
 
-[node name="MyTree2026" parent="." index="65"]
+[node name="MyTree2026" parent="." index="66"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2026" index="0"]
@@ -1321,7 +1329,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2026/StaticBody" index="0"]
 shape = SubResource( 66 )
 
-[node name="MyTree2027" parent="." index="66"]
+[node name="MyTree2027" parent="." index="67"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2027" index="0"]
@@ -1329,7 +1337,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2027/StaticBody" index="0"]
 shape = SubResource( 67 )
 
-[node name="MyTree2028" parent="." index="67"]
+[node name="MyTree2028" parent="." index="68"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2028" index="0"]
@@ -1337,7 +1345,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2028/StaticBody" index="0"]
 shape = SubResource( 68 )
 
-[node name="MyTree2029" parent="." index="68"]
+[node name="MyTree2029" parent="." index="69"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2029" index="0"]
@@ -1345,7 +1353,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2029/StaticBody" index="0"]
 shape = SubResource( 69 )
 
-[node name="MyTree2030" parent="." index="69"]
+[node name="MyTree2030" parent="." index="70"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2030" index="0"]
@@ -1353,7 +1361,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2030/StaticBody" index="0"]
 shape = SubResource( 70 )
 
-[node name="MyTree2031" parent="." index="70"]
+[node name="MyTree2031" parent="." index="71"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2031" index="0"]
@@ -1361,7 +1369,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2031/StaticBody" index="0"]
 shape = SubResource( 71 )
 
-[node name="MyTree2032" parent="." index="71"]
+[node name="MyTree2032" parent="." index="72"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2032" index="0"]
@@ -1369,7 +1377,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2032/StaticBody" index="0"]
 shape = SubResource( 72 )
 
-[node name="MyTree2033" parent="." index="72"]
+[node name="MyTree2033" parent="." index="73"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2033" index="0"]
@@ -1377,7 +1385,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2033/StaticBody" index="0"]
 shape = SubResource( 73 )
 
-[node name="MyTree2034" parent="." index="73"]
+[node name="MyTree2034" parent="." index="74"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2034" index="0"]
@@ -1385,7 +1393,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2034/StaticBody" index="0"]
 shape = SubResource( 74 )
 
-[node name="MyTree2035" parent="." index="74"]
+[node name="MyTree2035" parent="." index="75"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2035" index="0"]
@@ -1393,7 +1401,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2035/StaticBody" index="0"]
 shape = SubResource( 75 )
 
-[node name="MyTree2037" parent="." index="75"]
+[node name="MyTree2037" parent="." index="76"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2037" index="0"]
@@ -1401,7 +1409,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2037/StaticBody" index="0"]
 shape = SubResource( 76 )
 
-[node name="MyTree2038" parent="." index="76"]
+[node name="MyTree2038" parent="." index="77"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2038" index="0"]
@@ -1409,7 +1417,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2038/StaticBody" index="0"]
 shape = SubResource( 77 )
 
-[node name="MyTree2039" parent="." index="77"]
+[node name="MyTree2039" parent="." index="78"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2039" index="0"]
@@ -1417,7 +1425,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2039/StaticBody" index="0"]
 shape = SubResource( 78 )
 
-[node name="MyTree2040" parent="." index="78"]
+[node name="MyTree2040" parent="." index="79"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2040" index="0"]
@@ -1425,7 +1433,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2040/StaticBody" index="0"]
 shape = SubResource( 79 )
 
-[node name="MyTree2041" parent="." index="79"]
+[node name="MyTree2041" parent="." index="80"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2041" index="0"]
@@ -1433,7 +1441,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2041/StaticBody" index="0"]
 shape = SubResource( 80 )
 
-[node name="MyTree2042" parent="." index="80"]
+[node name="MyTree2042" parent="." index="81"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2042" index="0"]
@@ -1441,7 +1449,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2042/StaticBody" index="0"]
 shape = SubResource( 81 )
 
-[node name="MyTree2043" parent="." index="81"]
+[node name="MyTree2043" parent="." index="82"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2043" index="0"]
@@ -1449,7 +1457,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2043/StaticBody" index="0"]
 shape = SubResource( 82 )
 
-[node name="MyTree2044" parent="." index="82"]
+[node name="MyTree2044" parent="." index="83"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2044" index="0"]
@@ -1457,7 +1465,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2044/StaticBody" index="0"]
 shape = SubResource( 83 )
 
-[node name="MyTree2045" parent="." index="83"]
+[node name="MyTree2045" parent="." index="84"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2045" index="0"]
@@ -1465,7 +1473,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2045/StaticBody" index="0"]
 shape = SubResource( 84 )
 
-[node name="MyTree2046" parent="." index="84"]
+[node name="MyTree2046" parent="." index="85"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2046" index="0"]
@@ -1473,7 +1481,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2046/StaticBody" index="0"]
 shape = SubResource( 85 )
 
-[node name="MyTree2036" parent="." index="85"]
+[node name="MyTree2036" parent="." index="86"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2036" index="0"]
@@ -1481,7 +1489,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2036/StaticBody" index="0"]
 shape = SubResource( 86 )
 
-[node name="MyTree2047" parent="." index="86"]
+[node name="MyTree2047" parent="." index="87"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2047" index="0"]
@@ -1489,7 +1497,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2047/StaticBody" index="0"]
 shape = SubResource( 87 )
 
-[node name="MyTree2048" parent="." index="87"]
+[node name="MyTree2048" parent="." index="88"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2048" index="0"]
@@ -1497,7 +1505,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2048/StaticBody" index="0"]
 shape = SubResource( 88 )
 
-[node name="MyTree2049" parent="." index="88"]
+[node name="MyTree2049" parent="." index="89"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2049" index="0"]
@@ -1505,7 +1513,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2049/StaticBody" index="0"]
 shape = SubResource( 89 )
 
-[node name="MyTree2050" parent="." index="89"]
+[node name="MyTree2050" parent="." index="90"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2050" index="0"]
@@ -1513,7 +1521,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2050/StaticBody" index="0"]
 shape = SubResource( 90 )
 
-[node name="MyTree2051" parent="." index="90"]
+[node name="MyTree2051" parent="." index="91"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2051" index="0"]
@@ -1521,7 +1529,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2051/StaticBody" index="0"]
 shape = SubResource( 91 )
 
-[node name="MyTree2052" parent="." index="91"]
+[node name="MyTree2052" parent="." index="92"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2052" index="0"]
@@ -1529,7 +1537,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2052/StaticBody" index="0"]
 shape = SubResource( 92 )
 
-[node name="MyTree2053" parent="." index="92"]
+[node name="MyTree2053" parent="." index="93"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2053" index="0"]
@@ -1537,7 +1545,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2053/StaticBody" index="0"]
 shape = SubResource( 93 )
 
-[node name="MyTree2054" parent="." index="93"]
+[node name="MyTree2054" parent="." index="94"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2054" index="0"]
@@ -1545,7 +1553,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2054/StaticBody" index="0"]
 shape = SubResource( 94 )
 
-[node name="MyTree2055" parent="." index="94"]
+[node name="MyTree2055" parent="." index="95"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2055" index="0"]
@@ -1553,7 +1561,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2055/StaticBody" index="0"]
 shape = SubResource( 95 )
 
-[node name="MyTree2056" parent="." index="95"]
+[node name="MyTree2056" parent="." index="96"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2056" index="0"]
@@ -1561,7 +1569,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2056/StaticBody" index="0"]
 shape = SubResource( 96 )
 
-[node name="MyTree2057" parent="." index="96"]
+[node name="MyTree2057" parent="." index="97"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2057" index="0"]
@@ -1569,7 +1577,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2057/StaticBody" index="0"]
 shape = SubResource( 97 )
 
-[node name="MyTree2058" parent="." index="97"]
+[node name="MyTree2058" parent="." index="98"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2058" index="0"]
@@ -1577,7 +1585,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2058/StaticBody" index="0"]
 shape = SubResource( 98 )
 
-[node name="MyTree2059" parent="." index="98"]
+[node name="MyTree2059" parent="." index="99"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2059" index="0"]
@@ -1585,7 +1593,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2059/StaticBody" index="0"]
 shape = SubResource( 99 )
 
-[node name="MyTree2060" parent="." index="99"]
+[node name="MyTree2060" parent="." index="100"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2060" index="0"]
@@ -1593,7 +1601,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2060/StaticBody" index="0"]
 shape = SubResource( 100 )
 
-[node name="MyTree2061" parent="." index="100"]
+[node name="MyTree2061" parent="." index="101"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2061" index="0"]
@@ -1601,7 +1609,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2061/StaticBody" index="0"]
 shape = SubResource( 101 )
 
-[node name="MyTree2062" parent="." index="101"]
+[node name="MyTree2062" parent="." index="102"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2062" index="0"]
@@ -1609,7 +1617,7 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2062/StaticBody" index="0"]
 shape = SubResource( 102 )
 
-[node name="MyTree2063" parent="." index="102"]
+[node name="MyTree2063" parent="." index="103"]
 editor/display_folded = true
 
 [node name="StaticBody" type="StaticBody" parent="MyTree2063" index="0"]
@@ -1617,12 +1625,11 @@ editor/display_folded = true
 [node name="CollisionShape" type="CollisionShape" parent="MyTree2063/StaticBody" index="0"]
 shape = SubResource( 103 )
 
-[node name="Campfire" parent="." index="103"]
+[node name="Campfire" parent="." index="104"]
 transform = Transform( -0.91849, 0.1143, -0.378566, 0.317463, 0.783927, -0.533549, 0.235783, -0.61024, -0.756315, -6.06495, 8.31409, 29.8209 )
 
-[node name="Fire" type="Spatial" parent="." index="104"]
-editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, -0.999999, 8.74227e-008, 0, -8.74227e-008, -1, -7.20672, 9.20862, 30.7275 )
+[node name="Fire" type="Spatial" parent="." index="105"]
+transform = Transform( 1, 0, 0, 0, -0.999999, 8.74227e-008, 0, -8.74227e-008, -1, -7.152, 9.20862, 30.7826 )
 
 [node name="FireParticles" type="Particles" parent="Fire" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -7.10543e-015, 1, 0, 0, 0 )
@@ -1645,3 +1652,9 @@ transform = Transform( 1, 0, 0, 0, -1, -8.74229e-008, 0, 8.74229e-008, -1, 0.081
 light_color = Color( 0.992157, 0.509804, 0, 1 )
 light_energy = 16.0
 spot_angle = 180.0
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="Fire" index="3"]
+stream = ExtResource( 4 )
+unit_db = 5.0
+unit_size = 4.0
+autoplay = true
