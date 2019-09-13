@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://characters/enemy_ogre/ogre/ogre.escn" type="PackedScene" id=1]
+[ext_resource path="res://characters/enemy_ogre/club/club.tscn" type="PackedScene" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "attack"
+
+[sub_resource type="AnimationNodeBlend2" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "idle_loop"
+
+[sub_resource type="AnimationNodeOneShot" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "walk_loop"
+
+[sub_resource type="AnimationNodeBlendTree" id=6]
+graph_offset = Vector2( -360, 17 )
+nodes/Animation/node = SubResource( 1 )
+nodes/Animation/position = Vector2( -60, 280 )
+nodes/Blend2/node = SubResource( 2 )
+nodes/Blend2/position = Vector2( -100, 100 )
+nodes/Idle/node = SubResource( 3 )
+nodes/Idle/position = Vector2( -300, 60 )
+nodes/OneShot/node = SubResource( 4 )
+nodes/OneShot/position = Vector2( 200, 80 )
+nodes/Walking/node = SubResource( 5 )
+nodes/Walking/position = Vector2( -300, 180 )
+nodes/output/position = Vector2( 380, 80 )
+node_connections = [ "output", 0, "OneShot", "OneShot", 0, "Blend2", "OneShot", 1, "Animation", "Blend2", 0, "Idle", "Blend2", 1, "Walking" ]
+
+[node name="Scene Root" instance=ExtResource( 1 )]
+
+[node name="AnimationTree" type="AnimationTree" parent="Armature" index="1"]
+tree_root = SubResource( 6 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Blend2/blend_amount = 0.0
+parameters/OneShot/active = false
+
+[node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
+transform = Transform( -0.314187, -0.908113, 0.276797, -0.199617, -0.221852, -0.954429, 0.928137, -0.355122, -0.111572, -2.79957, 2.7463, 1.56181 )
+bone_name = "Hand.R"
+
+[node name="Club" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]
+transform = Transform( -0.0890181, -0.989185, -0.116533, 0.96375, -0.115086, 0.240693, -0.251503, -0.0908824, 0.963571, 1.48209, -0.261876, -0.579637 )
