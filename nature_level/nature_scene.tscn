@@ -821,6 +821,7 @@ emission_shape = 2
 emission_box_extents = Vector3( 80, 2, 80 )
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
+angular_velocity = 1.05
 tangential_accel = 0.01
 tangential_accel_random = 0.2
 scale = 0.1

@@ -44,7 +44,7 @@ parameters/Blend2/blend_amount = 0.0
 parameters/OneShot/active = false
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.313471, -0.908386, 0.276712, -0.199618, -0.221853, -0.954429, 0.928379, -0.354423, -0.111786, -2.79854, 2.70525, 1.56256 )
+transform = Transform( -0.307683, -0.910576, 0.276011, -0.199618, -0.221854, -0.954429, 0.930313, -0.348758, -0.113507, -2.78984, 2.71883, 1.56712 )
 bone_name = "Hand.R"
 
 [node name="Club" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]

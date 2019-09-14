@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://characters/player/player.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/char_setup.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://addons/swipe-detector/icon.png" type="Texture" id=6]
 [ext_resource path="res://characters/player/mouse_trail.gd" type="Script" id=7]
 [ext_resource path="res://characters/player/sounds/sword_swing.wav" type="AudioStream" id=8]
+[ext_resource path="res://default_env.tres" type="Environment" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -69,4 +70,7 @@ script = ExtResource( 7 )
 [node name="SwordSwingAudio" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 640, 360 )
 stream = ExtResource( 8 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 9 )
 [connection signal="swiped" from="MouseSystem/SwipeDetector" to="." method="_on_SwipeDetector_swiped"]

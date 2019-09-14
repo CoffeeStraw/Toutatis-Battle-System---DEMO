@@ -40,7 +40,7 @@ func _ready():
 	_sword_collision = $ModelsAnimations/Armature/BoneAttachment/Sword/Area/CollisionShape
 	_sword_trail = $ModelsAnimations/Armature/BoneAttachment/Sword/Trail/ImmediateGeometry
 	#warning-ignore:return_value_discarded
-	$ModelsAnimations/Armature/BoneAttachment/Sword/Area.connect("body_entered", self, "_on_Enemy_Hitten")
+	#$ModelsAnimations/Armature/BoneAttachment/Sword/Area.connect("body_entered", self, "_on_Enemy_Hitten")
 	
 	_sword_swing_audio = $SwordSwingAudio
 	
@@ -146,6 +146,7 @@ func _on_SwipeDetector_swiped(gesture):
 	var attack_speed = 1 + anim_speed_fix + (100.0-power) * 3 / 100
 	
 	# Check if animation exists, else skip animation and audio execution
+	print(anim_name)
 	if($ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name)):
 		# Activate sound after some delay
 		var animation_length = $ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name).get_length() / attack_speed
@@ -168,7 +169,6 @@ func play_sound(animation_length):
 	_sword_swing_audio.set_pitch_scale(0.41551 / animation_length * 1.6) # 1.6 is a fix to let the sound ends faster
 	_sword_swing_audio.play()
 	_sound_thread.wait_to_finish()
-	
+
 func _on_Enemy_Hitten(body):
-	print(body)
-	print("Hit!\n")
+	print("Player: " + str(get_global_transform().origin))
