@@ -12,13 +12,13 @@ Developers:
 - [x] Nature Scene
 - [x] Main Character
 - [x] Sword
-- [ ] Enemies
-  - [ ] Dummy
+- [x] Enemies
+  - [x] Dummy
 
 ### Optional 3D Models
 - [ ] Shield
-- [ ] Enemies
-  - [ ] Big enemy (Orc?)
+- [x] Enemies
+  - [x] Big enemy (Orc?)
 
 <hr>
 
