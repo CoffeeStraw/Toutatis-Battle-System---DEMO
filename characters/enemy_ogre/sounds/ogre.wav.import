@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ogre.wav-864d58aff16c7792be4f68dc0b60d3c8.sample"
+
+[deps]
+
+source_file="res://characters/enemy_ogre/sounds/ogre.wav"
+dest_files=[ "res://.import/ogre.wav-864d58aff16c7792be4f68dc0b60d3c8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

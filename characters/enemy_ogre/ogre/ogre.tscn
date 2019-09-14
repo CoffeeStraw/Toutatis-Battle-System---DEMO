@@ -6,32 +6,35 @@
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "attack"
 
-[sub_resource type="AnimationNodeOneShot" id=4]
+[sub_resource type="AnimationNodeOneShot" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "idle_loop"
 
-[sub_resource type="AnimationNodeBlend2" id=2]
+[sub_resource type="AnimationNodeBlend2" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "walk_loop"
 
 [sub_resource type="AnimationNodeBlendTree" id=6]
-graph_offset = Vector2( -496, 76 )
+graph_offset = Vector2( 0, 63.5 )
 nodes/Animation/node = SubResource( 1 )
 nodes/Animation/position = Vector2( -60, 280 )
-nodes/AttackShot/node = SubResource( 4 )
+nodes/AttackShot/node = SubResource( 2 )
 nodes/AttackShot/position = Vector2( 200, 80 )
 nodes/Idle/node = SubResource( 3 )
 nodes/Idle/position = Vector2( -300, 60 )
-nodes/Idle_Walk/node = SubResource( 2 )
+nodes/Idle_Walk/node = SubResource( 4 )
 nodes/Idle_Walk/position = Vector2( -100, 100 )
 nodes/Walking/node = SubResource( 5 )
 nodes/Walking/position = Vector2( -300, 180 )
 nodes/output/position = Vector2( 380, 80 )
 node_connections = [ "output", 0, "AttackShot", "Idle_Walk", 0, "Idle", "Idle_Walk", 1, "Walking", "AttackShot", 0, "Idle_Walk", "AttackShot", 1, "Animation" ]
 
-[node name="Scene Root" instance=ExtResource( 1 )]
+[node name="Scene Root" index="0" instance=ExtResource( 1 )]
+
+[node name="Armature" parent="." index="0"]
+bones/22/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="AnimationTree" type="AnimationTree" parent="Armature" index="1"]
 tree_root = SubResource( 6 )
@@ -41,7 +44,7 @@ parameters/AttackShot/active = false
 parameters/Idle_Walk/blend_amount = 0.0
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.314187, -0.908113, 0.276797, -0.199617, -0.221852, -0.954429, 0.928137, -0.355122, -0.111572, -2.79961, 2.7037, 1.56196 )
+transform = Transform( -0.314187, -0.908113, 0.276797, -0.199617, -0.221852, -0.954429, 0.928137, -0.355122, -0.111572, -2.79957, 2.75927, 1.5618 )
 bone_name = "Hand.R"
 
 [node name="Club" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]

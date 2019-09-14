@@ -29,6 +29,7 @@ func _process(delta):
 			global_rotate(Vector3(0,1,0), angle)
 			_anim_tree.set("parameters/AttackShot/active", true)
 			_dir = Vector3()
+			$Club_Smash.play()
 		elif _anim_tree.get("parameters/AttackShot/active"):
 			_dir = Vector3()
 			
