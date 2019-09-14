@@ -803,20 +803,20 @@ color_ramp = SubResource( 113 )
 [sub_resource type="CubeMesh" id=117]
 size = Vector3( 1, 1, 1 )
 
-[sub_resource type="SpatialMaterial" id=119]
+[sub_resource type="SpatialMaterial" id=118]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
 
-[sub_resource type="Gradient" id=120]
+[sub_resource type="Gradient" id=119]
 offsets = PoolRealArray( 0.142857, 0.655172, 1 )
 colors = PoolColorArray( 1, 0.956863, 0.603922, 1, 1, 0.956863, 0.603922, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=121]
-gradient = SubResource( 120 )
+[sub_resource type="GradientTexture" id=120]
+gradient = SubResource( 119 )
 
-[sub_resource type="ParticlesMaterial" id=118]
+[sub_resource type="ParticlesMaterial" id=121]
 emission_shape = 2
 emission_box_extents = Vector3( 80, 2, 80 )
 spread = 0.0
@@ -824,7 +824,7 @@ gravity = Vector3( 0, 0, 0 )
 tangential_accel = 0.01
 tangential_accel_random = 0.2
 scale = 0.1
-color_ramp = SubResource( 121 )
+color_ramp = SubResource( 120 )
 
 [sub_resource type="CubeMesh" id=122]
 size = Vector3( 0.2, 0.2, 0.2 )
@@ -1690,11 +1690,13 @@ autoplay = true
 
 [node name="DustParticles" type="Particles" parent="." index="106"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.4384, 0 )
-material_override = SubResource( 119 )
+visible = false
+material_override = SubResource( 118 )
 cast_shadow = 0
+emitting = false
 amount = 2000
 lifetime = 20.0
 preprocess = 600.0
 visibility_aabb = AABB( -55, -4, -80, 155, 10, 175 )
-process_material = SubResource( 118 )
+process_material = SubResource( 121 )
 draw_pass_1 = SubResource( 122 )
