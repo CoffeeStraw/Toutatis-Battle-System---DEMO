@@ -146,7 +146,6 @@ func _on_SwipeDetector_swiped(gesture):
 	var attack_speed = 1 + anim_speed_fix + (100.0-power) * 3 / 100
 	
 	# Check if animation exists, else skip animation and audio execution
-	print(anim_name)
 	if($ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name)):
 		# Activate sound after some delay
 		var animation_length = $ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name).get_length() / attack_speed

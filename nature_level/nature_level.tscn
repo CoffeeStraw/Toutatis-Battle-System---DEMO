@@ -14,6 +14,7 @@ transform = Transform( -0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, -0.906308,
 
 [node name="Dummy" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04263, 7.15874, 33.0441 )
+visible = false
 
 [node name="Enemy_Ogre" parent="." instance=ExtResource( 4 )]
 transform = Transform( 0.895515, 0, -0.445031, 0, 1, 0, 0.445031, 0, 0.895515, -3.90184, 7.37873, 24.6349 )
