@@ -22,7 +22,11 @@ func _process(delta):
 		# Chase the player
 		var _dir = target.get_global_transform().origin - get_global_transform().origin
 
-		if target.get_global_transform().origin.distance_to(get_global_transform().origin) < attack_distance:
+		if target.get_global_transform().origin.distance_to(get_global_transform().origin) < attack_distance and not _anim_tree.get("parameters/AttackShot/active"):
+			var delta_x = target.get_global_transform().origin.x - get_global_transform().origin.x
+			var delta_z = target.get_global_transform().origin.z - get_global_transform().origin.z
+			var angle = atan2(delta_x, delta_z) - global_transform.basis.get_euler().y
+			global_rotate(Vector3(0,1,0), angle)
 			_anim_tree.set("parameters/AttackShot/active", true)
 			_dir = Vector3()
 		elif _anim_tree.get("parameters/AttackShot/active"):
