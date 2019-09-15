@@ -43,8 +43,11 @@ active = true
 parameters/AttackShot/active = false
 parameters/Idle_Walk/blend_amount = 0.0
 
+[node name="Ogre" parent="Armature" index="2"]
+cast_shadow = 0
+
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.314187, -0.908113, 0.276797, -0.199617, -0.221852, -0.954429, 0.928137, -0.355122, -0.111572, -2.79957, 2.75927, 1.5618 )
+transform = Transform( -0.314187, -0.908113, 0.276797, -0.199617, -0.221852, -0.954429, 0.928137, -0.355122, -0.111572, -2.79957, 2.76083, 1.56182 )
 bone_name = "Hand.R"
 
 [node name="Club" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]

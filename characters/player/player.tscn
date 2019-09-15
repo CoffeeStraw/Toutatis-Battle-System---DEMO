@@ -18,7 +18,9 @@ extents = Vector3( 0.211068, 0.001, 0.265351 )
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.54902 )
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=[
+"player",
+]]
 collision_layer = 2
 collision_mask = 9
 collision/safe_margin = 0.1

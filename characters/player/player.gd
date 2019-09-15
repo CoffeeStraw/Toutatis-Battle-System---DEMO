@@ -17,6 +17,7 @@ var _anim_tree
 
 var _sword_collision
 var _sword_trail
+var _valid_attack = false
 
 var _hud_damage
 var _hud_speed
@@ -25,10 +26,13 @@ var _hud_type
 var _sword_swing_audio
 var _sound_thread
 
+var _damage
 var _speed = normal_speed
 var _velocity = Vector3()
 var _walk_run_blend = 0.0
 var gravity = -9.81
+
+signal enemy_hitten
 
 func _ready():
 	_camera       = $Target/Camera
@@ -40,7 +44,7 @@ func _ready():
 	_sword_collision = $ModelsAnimations/Armature/BoneAttachment/Sword/Area/CollisionShape
 	_sword_trail = $ModelsAnimations/Armature/BoneAttachment/Sword/Trail/ImmediateGeometry
 	#warning-ignore:return_value_discarded
-	#$ModelsAnimations/Armature/BoneAttachment/Sword/Area.connect("body_entered", self, "_on_Enemy_Hitten")
+	$ModelsAnimations/Armature/BoneAttachment/Sword/Area.connect("body_entered", self, "_on_Enemy_Hitten")
 	
 	_sword_swing_audio = $SwordSwingAudio
 	
@@ -49,6 +53,9 @@ func _ready():
 	_hud_type   = $HUD/Panel/TypeValue
 	
 	gravity *= gravity_mult
+	
+	# Connecting enemy
+	get_parent().get_node("Enemy_Ogre").connect("player_hitten", self, "_on_hit")
 	
 func _input(ev):
 	if Input.is_action_just_pressed("move_run"):
@@ -94,14 +101,13 @@ func _physics_process(delta):
 	_velocity.x = hv.x
 	_velocity.y += delta * gravity
 	_velocity.z = hv.z
+	var _old_velocity = _velocity
 	_velocity = move_and_slide(_velocity, Vector3(0,1,0), true) # Doesn't slide on slopes
 	
 	# If the player is moving, rotate him
 	if(dir != Vector3(0,0,0)):
 		# Rotating basing on global rotation
-		var angle = atan2(_velocity.x, _velocity.z) - _character.global_transform.basis.get_euler().y
-		if abs(angle) >= 0.05:
-			angle /= 6
+		var angle = atan2(_old_velocity.x, _old_velocity.z) - _character.global_transform.basis.get_euler().y
 		_character.global_rotate(Vector3(0,1,0), angle)
 	
 	# Animation walk/run
@@ -118,10 +124,12 @@ func _physics_process(delta):
 	
 	# Improvable: Checking if some attack animation is running, then activate trail for sword
 	if _anim_tree.get("parameters/AttackShot/active") and not _sword_trail.trailEnabled:
+		_valid_attack = true
 		_sword_trail.trailEnabled = true
 	elif not _anim_tree.get("parameters/AttackShot/active"):
+		_valid_attack = false
 		_sword_trail.trailEnabled = false
-
+	
 func _on_SwipeDetector_swiped(gesture):
 	# Check if some animation is already playing, if true then ignore the swipe
 	if _anim_tree.get("parameters/AttackShot/active"):
@@ -131,9 +139,9 @@ func _on_SwipeDetector_swiped(gesture):
 	var anim_name = "attack_" + str( gesture.get_direction() )
 	
 	# Calculating power (used for later calculations of speed and damage)
-	var power = gesture.first_point().distance_to( gesture.last_point() )
+	_damage = gesture.first_point().distance_to( gesture.last_point() )
 	var max_power = Vector2(0.0, 0.0).distance_to( get_viewport().size )
-	power /= max_power / 100
+	_damage /= max_power / 100
 	
 	# Calculating attack speed, normalizing all attack animations duration
 	var anim_speed_fix = 0.0
@@ -145,7 +153,7 @@ func _on_SwipeDetector_swiped(gesture):
 		"attack_down":
 			anim_speed_fix = -1.2
 	
-	var attack_speed = 1 + anim_speed_fix + (100.0-power) * 3 / 100
+	var attack_speed = 1 + anim_speed_fix + (100.0-_damage) * 3 / 100
 	
 	# Check if animation exists, else skip animation and audio execution
 	if($ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name)):
@@ -160,7 +168,7 @@ func _on_SwipeDetector_swiped(gesture):
 		_anim_tree.set("parameters/AttackSpeed/scale", attack_speed)
 	
 	# Setting texts' HUD
-	_hud_damage.set_text(str(int(power)))
+	_hud_damage.set_text(str(int(_damage)))
 	_hud_speed.set_text(str(float(attack_speed)))
 	_hud_type.set_text(str(gesture.get_direction()))
 
@@ -171,5 +179,17 @@ func play_sound(animation_length):
 	_sword_swing_audio.play()
 	_sound_thread.wait_to_finish()
 
+func _on_hit(damage):
+	var _current_health = int($HUD/LifeBar/Control/Current.text)
+	_current_health -= int(damage)
+	
+	if _current_health > 0:
+		$HUD/LifeBar/Control/Current.text = str(_current_health)
+		$HUD/LifeBar/Bar.value = _current_health
+	else:
+		hide()
+
 func _on_Enemy_Hitten(body):
-	print("Player: " + str(get_global_transform().origin))
+	if _valid_attack:
+		_valid_attack = false
+		emit_signal("enemy_hitten", _damage)
