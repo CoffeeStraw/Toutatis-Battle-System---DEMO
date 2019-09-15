@@ -26,15 +26,15 @@ Developers:
 - [x] Idle (loop)
 - [x] Walking (loop)
 - [x] Running (loop)
-- [ ] Attacks
+- [x] Attacks
   - [x] LEFT corner to RIGHT corner             (→)
-  - [ ] TOP_LEFT corner to BOTTOM_RIGHT corner  (↘)
+  - [x] TOP_LEFT corner to BOTTOM_RIGHT corner  (↘)
   - [x] TOP corner to BOTTOM corner             (↓)
-  - [ ] TOP_RIGHT corner to BOTTOM_LEFT corner  (↙)
+  - [x] TOP_RIGHT corner to BOTTOM_LEFT corner  (↙)
   - [x] RIGHT corner to LEFT corner             (←)
-  - [ ] BOTTOM_RIGHT corner to TOP_LEFT corner  (↖)
-  - [ ] BOTTOM corner to TOP corner             (↑)
-  - [ ] BOTTOM_LEFT corner to TOP_RIGHT corner  (↗)
+  - [x] BOTTOM_RIGHT corner to TOP_LEFT corner  (↖)
+  - [x] BOTTOM corner to TOP corner             (↑)
+  - [x] BOTTOM_LEFT corner to TOP_RIGHT corner  (↗)
 
 ### Optional Animations
 - [ ] Additional idle
@@ -55,6 +55,8 @@ Developers:
   - [ ] Damage system
   - [ ] Damage Numer Animation (number floating/number on the right/left of the UI)
   - [ ] Enemy System
+    - [x] Go towards the Player and attacks if enough near
+    - [x] Go to the spawn point if the player runs
     - [ ] Can Take damage with swipes attack
     - [ ] Critical Point where you can do more damage, key for the combat system
 - [ ] GUI Menu
