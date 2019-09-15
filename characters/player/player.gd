@@ -100,6 +100,8 @@ func _physics_process(delta):
 	if(dir != Vector3(0,0,0)):
 		# Rotating basing on global rotation
 		var angle = atan2(_velocity.x, _velocity.z) - _character.global_transform.basis.get_euler().y
+		if abs(angle) >= 0.05:
+			angle /= 6
 		_character.global_rotate(Vector3(0,1,0), angle)
 	
 	# Animation walk/run
