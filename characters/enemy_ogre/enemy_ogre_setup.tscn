@@ -19,6 +19,8 @@ height = 15.0
 collision_layer = 8
 collision_mask = 5
 script = ExtResource( 1 )
+speed = 3.5
+damage = 50
 
 [node name="Models_Animations" parent="." instance=ExtResource( 2 )]
 

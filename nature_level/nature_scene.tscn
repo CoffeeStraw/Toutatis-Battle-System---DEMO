@@ -833,7 +833,7 @@ color_ramp = SubResource( 121 )
 [sub_resource type="CubeMesh" id=123]
 size = Vector3( 0.2, 0.2, 0.2 )
 
-[node name="NatureScene" instance=ExtResource( 1 )]
+[node name="NatureScene" index="0" instance=ExtResource( 1 )]
 
 [node name="BirdsSound" type="AudioStreamPlayer2D" parent="." index="0"]
 position = Vector2( 960, 540 )
