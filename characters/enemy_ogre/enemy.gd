@@ -70,7 +70,7 @@ func _process(delta):
 		var delta_x = target.get_global_transform().origin.x - get_global_transform().origin.x
 		var delta_z = target.get_global_transform().origin.z - get_global_transform().origin.z
 		var angle = atan2(delta_x, delta_z) - global_transform.basis.get_euler().y
-		global_rotate(Vector3(0,1,0), angle)
+		global_rotate(Vector3(0,1,0), angle/10)
 		
 		var speed_blend = hv.length() * 2 / speed
 		_anim_tree.set("parameters/Idle_Walk/blend_amount", speed_blend)
@@ -81,7 +81,7 @@ func _process(delta):
 		if _spawn_point.origin.distance_to(get_global_transform().origin) <= spawn_tolerance_distance:
 			_dir = Vector3()
 			var angle = _spawn_point.basis.get_euler().y - global_transform.basis.get_euler().y
-			global_rotate(Vector3(0,1,0), angle)
+			global_rotate(Vector3(0,1,0), angle/10)
 
 		_dir.y = 0
 		_dir = _dir.normalized()
@@ -106,7 +106,7 @@ func _process(delta):
 			var delta_x = _spawn_point.origin.x - get_global_transform().origin.x
 			var delta_z = _spawn_point.origin.z - get_global_transform().origin.z
 			var angle = atan2(delta_x, delta_z) - global_transform.basis.get_euler().y
-			global_rotate(Vector3(0,1,0), angle)
+			global_rotate(Vector3(0,1,0), angle/10)
 		
 		var speed_blend = hv.length() * 2 / speed
 		_anim_tree.set("parameters/Idle_Walk/blend_amount", speed_blend)

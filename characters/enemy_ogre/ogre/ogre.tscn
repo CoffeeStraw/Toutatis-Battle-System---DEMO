@@ -31,7 +31,10 @@ nodes/Walking/position = Vector2( -300, 180 )
 nodes/output/position = Vector2( 380, 80 )
 node_connections = [ "output", 0, "AttackShot", "Idle_Walk", 0, "Idle", "Idle_Walk", 1, "Walking", "AttackShot", 0, "Idle_Walk", "AttackShot", 1, "Animation" ]
 
-[node name="Scene Root" instance=ExtResource( 1 )]
+[node name="Scene Root" index="0" instance=ExtResource( 1 )]
+
+[node name="Armature" parent="." index="0"]
+bones/22/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="AnimationTree" type="AnimationTree" parent="Armature" index="1"]
 tree_root = SubResource( 6 )
@@ -40,11 +43,8 @@ active = true
 parameters/AttackShot/active = false
 parameters/Idle_Walk/blend_amount = 0.0
 
-[node name="Ogre" parent="Armature" index="2"]
-cast_shadow = 0
-
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.314187, -0.908113, 0.276797, -0.199617, -0.221852, -0.954429, 0.928137, -0.355122, -0.111572, -2.79957, 2.75936, 1.5618 )
+transform = Transform( -0.282597, -0.919611, 0.272864, -0.199618, -0.221854, -0.954429, 0.938239, -0.324187, -0.120875, -2.75253, 2.77782, 1.58763 )
 bone_name = "Hand.R"
 
 [node name="Club" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]
