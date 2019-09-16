@@ -187,6 +187,8 @@ func _on_hit(damage):
 		$HUD/LifeBar/Control/Current.text = str(_current_health)
 		$HUD/LifeBar/Bar.value = _current_health
 	else:
+		$HUD/LifeBar/Control/Current.text = "0"
+		$HUD/LifeBar/Bar.value = 0
 		hide()
 
 func _on_Enemy_Hitten(body):
