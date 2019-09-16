@@ -9,7 +9,7 @@
 [node name="Environment" parent="." instance=ExtResource( 1 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, -0.906308, -10.8831, 7.73879, 36.3829 )
+transform = Transform( -0.227631, 0, -0.973747, 0, 1, 0, 0.973747, 0, -0.227631, 27.5047, 5.23406, 35.5573 )
 
 [node name="Enemy_Ogre" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.895515, 0, -0.445031, 0, 1, 0, 0.445031, 0, 0.895515, -3.90184, 7.37873, 24.6349 )
