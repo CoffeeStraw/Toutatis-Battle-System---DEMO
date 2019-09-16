@@ -3,11 +3,15 @@
 extends KinematicBody
 
 # User Settings
-export (float, 1.0, 100.0) var normal_speed = 6
-export (float, 1.0, 100.0) var max_speed = 15
-export (float, 1.0, 100.0) var acc = 3
-export (float, 1.0, 100.0) var de_acc = 6
-export (float, 1.0, 100.0) var gravity_mult = 3
+export (float, 1.0, 100.0) var normal_speed = 6.0
+export (float, 1.0, 100.0) var max_speed = 15.0
+export (float, 1.0, 100.0) var acc = 3.0
+export (float, 1.0, 100.0) var de_acc = 6.0
+export (float, 1.0, 100.0) var gravity_mult = 3.0
+export (float, 0.0, 100.0) var min_attack_power = 10.0
+export (float, 0.0, 100.0) var max_attack_power = 100.0
+export (float, 0.0, 100.0) var min_attack_duration = 0.5
+export (float, 0.0, 100.0) var max_attack_duration = 3.0
 
 # Variables
 var _camera
@@ -101,13 +105,12 @@ func _physics_process(delta):
 	_velocity.x = hv.x
 	_velocity.y += delta * gravity
 	_velocity.z = hv.z
-	var _old_velocity = _velocity
 	_velocity = move_and_slide(_velocity, Vector3(0,1,0), true) # Doesn't slide on slopes
 	
 	# If the player is moving, rotate him
 	if(dir != Vector3(0,0,0)):
 		# Rotating basing on global rotation
-		var angle = atan2(_old_velocity.x, _old_velocity.z) - _character.global_transform.basis.get_euler().y
+		var angle = atan2(_velocity.x, _velocity.z) - _character.global_transform.basis.get_euler().y
 		_character.global_rotate(Vector3(0,1,0), angle)
 	
 	# Animation walk/run
@@ -138,38 +141,29 @@ func _on_SwipeDetector_swiped(gesture):
 	# Saving animation name
 	var anim_name = "attack_" + str( gesture.get_direction() )
 	
-	# Calculating power (used for later calculations of speed and damage)
+	# Calculating power of the attack (also used later for calculation of animation speed)
 	_damage = gesture.first_point().distance_to( gesture.last_point() )
-	var max_power = Vector2(0.0, 0.0).distance_to( get_viewport().size )
-	_damage /= max_power / 100
+	_damage /= Vector2(0.0, 0.0).distance_to( get_viewport().size )
+	var _damage_percent = _damage
+	_damage = min_attack_power + _damage * (max_attack_power - min_attack_power)
 	
-	# Calculating attack speed, normalizing all attack animations duration
-	var anim_speed_fix = 0.0
-	match anim_name:
-		"attack_left":
-			anim_speed_fix = 0.0
-		"attack_right":
-			anim_speed_fix = -0.2
-		"attack_down":
-			anim_speed_fix = -1.2
+	# Calculating a factor to normalize all attack animations duration
+	var _attack_speed = $ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name).get_length()
+	_attack_speed /= (min_attack_duration + (max_attack_duration - min_attack_duration) * _damage_percent)
 	
-	var attack_speed = 1 + anim_speed_fix + (100.0-_damage) * 3 / 100
+	# Activate sound after some delay to match animation
+	var _animation_length = $ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name).get_length() / _attack_speed
+	_sound_thread = Thread.new()
+	_sound_thread.start(self, "play_sound", _animation_length)
 	
-	# Check if animation exists, else skip animation and audio execution
-	if($ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name)):
-		# Activate sound after some delay
-		var animation_length = $ModelsAnimations/Armature/AnimationPlayer.get_animation(anim_name).get_length() / attack_speed
-		_sound_thread = Thread.new()
-		_sound_thread.start(self, "play_sound", animation_length)
-		
-		# Enabling attack animation
-		_anim_attacks.start(anim_name)
-		_anim_tree.set("parameters/AttackShot/active", true)
-		_anim_tree.set("parameters/AttackSpeed/scale", attack_speed)
+	# Enabling attack animation
+	_anim_attacks.start(anim_name)
+	_anim_tree.set("parameters/AttackShot/active", true)
+	_anim_tree.set("parameters/AttackSpeed/scale", _attack_speed)
 	
 	# Setting texts' HUD
 	_hud_damage.set_text(str(int(_damage)))
-	_hud_speed.set_text(str(float(attack_speed)))
+	_hud_speed.set_text(str(float(_animation_length)))
 	_hud_type.set_text(str(gesture.get_direction()))
 
 func play_sound(animation_length):
