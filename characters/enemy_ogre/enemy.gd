@@ -14,6 +14,7 @@ var _velocity = Vector3()
 var _anim_tree
 var _spawn_point
 var _attack_shot
+var _attack_thread
 
 signal player_hitten
 
@@ -33,17 +34,20 @@ func _process(delta):
 
 		if target.get_global_transform().origin.distance_to(get_global_transform().origin) < attack_distance and not _anim_tree.get("parameters/AttackShot/active"):
 			_attack_shot = false
+			_attack_thread = Thread.new()
+			_attack_thread.start(self, "_attack_disable", 1.3)
+			
 			var delta_x = target.get_global_transform().origin.x - get_global_transform().origin.x
 			var delta_z = target.get_global_transform().origin.z - get_global_transform().origin.z
 			var angle = atan2(delta_x, delta_z) - global_transform.basis.get_euler().y
 			global_rotate(Vector3(0,1,0), angle)
+			
 			_anim_tree.set("parameters/AttackShot/active", true)
 			_dir = Vector3()
 			$Club_Smash.play()
 		elif _anim_tree.get("parameters/AttackShot/active"):
 			_dir = Vector3()
-			
-
+		
 		_dir.y = 0
 		_dir = _dir.normalized()
 		
@@ -135,3 +139,10 @@ func _on_hit(damage):
 		$HUD/Bar.value = _current_health
 	else:
 		queue_free()
+		
+func _attack_disable(time):
+	print("ON")
+	yield(get_tree().create_timer(time), "timeout")
+	print("OFF")
+	_attack_shot = true
+	_attack_thread.wait_to_finish()
