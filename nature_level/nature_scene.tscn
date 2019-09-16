@@ -833,7 +833,7 @@ color_ramp = SubResource( 121 )
 [sub_resource type="CubeMesh" id=123]
 size = Vector3( 0.2, 0.2, 0.2 )
 
-[node name="NatureScene" index="0" instance=ExtResource( 1 )]
+[node name="NatureScene" instance=ExtResource( 1 )]
 
 [node name="BirdsSound" type="AudioStreamPlayer2D" parent="." index="0"]
 position = Vector2( 960, 540 )
@@ -1656,6 +1656,7 @@ editor/display_folded = true
 shape = SubResource( 103 )
 
 [node name="Campfire" parent="." index="104"]
+editor/display_folded = true
 transform = Transform( -0.91849, 0.1143, -0.378566, 0.317463, 0.783927, -0.533549, 0.235783, -0.61024, -0.756315, -6.06495, 8.31409, 29.8209 )
 
 [node name="StaticBody" type="StaticBody" parent="Campfire" index="0"]
@@ -1665,6 +1666,7 @@ transform = Transform( 0.927183, 0.374607, -2.98023e-008, -0.317684, 0.786296, 0
 shape = SubResource( 104 )
 
 [node name="Fire" type="Spatial" parent="." index="105"]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, -0.999999, 8.74227e-008, 0, -8.74227e-008, -1, -7.152, 9.20862, 30.7826 )
 
 [node name="FireParticles" type="Particles" parent="Fire" index="0"]
@@ -1701,10 +1703,8 @@ autoplay = true
 
 [node name="DustParticles" type="Particles" parent="." index="106"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.4384, 0 )
-visible = false
 material_override = SubResource( 119 )
 cast_shadow = 0
-emitting = false
 amount = 2000
 lifetime = 20.0
 preprocess = 600.0

@@ -18,7 +18,8 @@ margin_left = 121.0
 margin_top = 8.0
 margin_right = 488.0
 margin_bottom = 41.0
-value = 100.0
+max_value = 500.0
+value = 500.0
 rounded = true
 texture_under = ExtResource( 2 )
 texture_progress = ExtResource( 3 )
@@ -34,8 +35,8 @@ text = "HP          /"
 
 [node name="Current" type="Label" parent="Control"]
 margin_left = 31.0
-text = "100"
+text = "500"
 
 [node name="Max" type="Label" parent="Control"]
 margin_left = 65.0
-text = "100"
+text = "500"

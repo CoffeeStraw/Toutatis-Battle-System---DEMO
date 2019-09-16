@@ -44,7 +44,7 @@ parameters/AttackShot/active = false
 parameters/Idle_Walk/blend_amount = 0.0
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature" index="3"]
-transform = Transform( -0.282597, -0.919611, 0.272864, -0.199618, -0.221854, -0.954429, 0.938239, -0.324187, -0.120875, -2.75253, 2.77782, 1.58763 )
+transform = Transform( -0.314187, -0.908113, 0.276797, -0.199617, -0.221852, -0.954429, 0.928137, -0.355122, -0.111572, -2.79957, 2.78534, 1.56181 )
 bone_name = "Hand.R"
 
 [node name="Club" parent="Armature/BoneAttachment" index="0" instance=ExtResource( 2 )]

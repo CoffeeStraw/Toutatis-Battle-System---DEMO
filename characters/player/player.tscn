@@ -24,6 +24,9 @@ collision_layer = 2
 collision_mask = 9
 collision/safe_margin = 0.1
 script = ExtResource( 1 )
+min_attack_power = 20.0
+min_attack_duration = 0.4
+max_attack_duration = 2.2
 
 [node name="ModelsAnimations" parent="." instance=ExtResource( 2 )]
 
