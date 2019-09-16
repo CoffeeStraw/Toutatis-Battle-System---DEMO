@@ -1,15 +1,17 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://nature_level/nature_scene.tscn" type="PackedScene" id=1]
-[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://characters/enemy_ogre/enemy_ogre_setup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/enemy_ogre/enemy_ogre_setup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=3]
 
 [node name="Nature_Level" type="Spatial"]
 
 [node name="Environment" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.227631, 0, -0.973747, 0, 1, 0, 0.973747, 0, -0.227631, 27.5047, 5.23406, 35.5573 )
-
-[node name="Enemy_Ogre" parent="." instance=ExtResource( 3 )]
+[node name="Enemy_Ogre" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.895515, 0, -0.445031, 0, 1, 0, 0.445031, 0, 0.895515, -3.90184, 7.37873, 24.6349 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+pause_mode = 2
+transform = Transform( -0.227631, 0, -0.973747, 0, 1, 0, 0.973747, 0, -0.227631, 27.5047, 5.23406, 35.5573 )

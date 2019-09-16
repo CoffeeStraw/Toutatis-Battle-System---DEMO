@@ -34,9 +34,11 @@ var _damage
 var _speed = normal_speed
 var _velocity = Vector3()
 var _walk_run_blend = 0.0
+var _death = false
 var gravity = -9.81
 
 signal enemy_hitten
+signal player_death
 
 func _ready():
 	_camera       = $Target/Camera
@@ -62,6 +64,9 @@ func _ready():
 	get_parent().get_node("Enemy_Ogre").connect("player_hitten", self, "_on_hit")
 	
 func _input(ev):
+	if _death:
+		return
+	
 	if Input.is_action_just_pressed("move_run"):
 		_speed = max_speed
 	elif Input.is_action_just_released("move_run"):
@@ -73,6 +78,15 @@ func _input(ev):
 			$MouseSystem/MouseTrail.is_enabled = false
 
 func _physics_process(delta):
+	if _death:
+		# Animation death
+		$ModelsAnimations.scale.y -= 1.0*delta
+		if $ModelsAnimations.scale.y <= 0.1:
+			$ModelsAnimations.scale.y = 0.1
+			$ModelsAnimations.hide()
+			set_physics_process(false)
+		return
+	
 	# PLAYER MOVEMENT
 	var dir = Vector3()
 	var cam_xform = _camera.get_global_transform()
@@ -169,6 +183,9 @@ func _on_SwipeDetector_swiped(gesture):
 func play_sound(animation_length):
 	# Note that 0.41551 is the length of the sound
 	yield(get_tree().create_timer(animation_length/2.2), "timeout")
+	if _death:
+		return
+
 	_sword_swing_audio.set_pitch_scale(0.41551 / animation_length * 1.6) # 1.6 is a fix to let the sound ends faster
 	_sword_swing_audio.play()
 	_sound_thread.wait_to_finish()
@@ -181,9 +198,16 @@ func _on_hit(damage):
 		$HUD/LifeBar/Control/Current.text = str(_current_health)
 		$HUD/LifeBar/Bar.value = _current_health
 	else:
+		# Death
+		_death = true
 		$HUD/LifeBar/Control/Current.text = "0"
 		$HUD/LifeBar/Bar.value = 0
-		hide()
+		$CapsuleCollision.queue_free()
+		$BoxCollision.queue_free()
+		$MouseSystem.queue_free()
+		$SwordSwingAudio.queue_free()
+		$DeathScreen.visible = true
+		get_tree().paused = true
 
 func _on_Enemy_Hitten(body):
 	if _valid_attack:

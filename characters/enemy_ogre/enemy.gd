@@ -15,6 +15,7 @@ var _anim_tree
 var _spawn_point
 var _attack_shot
 var _attack_thread
+var _dead = false
 
 signal player_hitten
 
@@ -25,9 +26,15 @@ func _ready():
 	$Models_Animations/Armature/BoneAttachment/Club/Area.connect("body_entered", self, "_on_Club_Hit")
 	
 	# Connecting player
-	get_parent().get_node("Player").connect("enemy_hitten", self, "_on_hit") 
+	get_parent().get_node("Player").connect("enemy_hitten", self, "_on_hit")
 
 func _process(delta):
+	if _dead:
+		# Animation death
+		scale.z -= 1.4*delta
+		scale.x -= 1.4*delta
+		if scale.z <= 0:
+			queue_free()
 	if chasing:
 		# Chase the player
 		var _dir = target.get_global_transform().origin - get_global_transform().origin
@@ -129,7 +136,7 @@ func _on_Club_Hit(body):
 	   not _attack_shot:
 			_attack_shot = true
 			emit_signal("player_hitten", damage)
-			
+
 func _on_hit(damage):
 	var _current_health = int($HUD/Control/Current.text)
 	_current_health -= int(damage)
@@ -138,11 +145,17 @@ func _on_hit(damage):
 		$HUD/Control/Current.text = str(_current_health)
 		$HUD/Bar.value = _current_health
 	else:
-		queue_free()
-		
+		# Enemy Death
+		_dead = true
+		_anim_tree.active = false
+		$HUD/Control/Current.text = "0"
+		$HUD/Bar.value = 0
+		$Club_Smash.stop()
+		$CollisionBox.disabled = true
+		$CollisionBoxFeet.disabled = true
+		$Area/CollisionShape.disabled = true
+
 func _attack_disable(time):
-	print("ON")
 	yield(get_tree().create_timer(time), "timeout")
-	print("OFF")
 	_attack_shot = true
 	_attack_thread.wait_to_finish()

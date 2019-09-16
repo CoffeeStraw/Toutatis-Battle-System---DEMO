@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://characters/player/gui/Death/game_over.png" type="Texture" id=1]
+[ext_resource path="res://characters/player/gui/Death/Button.gd" type="Script" id=2]
+
+[node name="DeathScreen" type="Control"]
+margin_left = -246.132
+margin_top = -120.29
+margin_right = 1675.87
+margin_bottom = 959.71
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 198.277
+margin_top = 100.941
+margin_right = 2048.28
+margin_bottom = 1106.94
+color = Color( 0, 0, 0, 0.588235 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 310.975
+margin_top = 362.933
+margin_right = 1463.98
+margin_bottom = 507.933
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+
+[node name="Button" type="Button" parent="."]
+margin_left = 585.378
+margin_top = 550.784
+margin_right = 1181.38
+margin_bottom = 621.784
+text = "RESTART"
+script = ExtResource( 2 )
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
