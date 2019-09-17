@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/excMark.obj-b5b24aad0ac0962886ec93ecc3b900d8.mesh"
+
+[deps]
+
+files=[ "res://.import/excMark.obj-b5b24aad0ac0962886ec93ecc3b900d8.mesh" ]
+
+source_file="res://characters/enemy_ogre/esclamations/excMark.obj"
+dest_files=[ "res://.import/excMark.obj-b5b24aad0ac0962886ec93ecc3b900d8.mesh", "res://.import/excMark.obj-b5b24aad0ac0962886ec93ecc3b900d8.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
