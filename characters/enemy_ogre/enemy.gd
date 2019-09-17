@@ -165,6 +165,7 @@ func _alert_disable(time):
 	_alert_thread.wait_to_finish()
 
 func _attack_disable(time):
+	return
 	yield(get_tree().create_timer(time), "timeout")
 	_attack_shot = true
 	_attack_thread.wait_to_finish()
