@@ -48,24 +48,24 @@ Developers:
   - [x] Simple Movement
   - [x] Movement executing animations
 - [x] 3D Person Camera follow
-- [ ] Combat System
+- [x] Combat System
   - [x] Swipe System
     - [x] Recognizement of swipes on screen, pressing LEFT Mouse Button (A Swipe is given from the angle of the first and last point on mouse movement path while pressing left button)
     - [x] Character ATTACK animation execution
-  - [ ] Damage system
-  - [ ] Damage Numer Animation (number floating/number on the right/left of the UI)
-  - [ ] Enemy System
+  - [x] Damage system
+  - [x] Enemy System
     - [x] Go towards the Player and attacks if enough near
     - [x] Go to the spawn point if the player runs
-    - [ ] Can Take damage with swipes attack
-    - [ ] Critical Point where you can do more damage, key for the combat system
-- [ ] GUI Menu
-  - [ ] Health Bar
-  - [ ] Damages number when hitting
+    - [x] Can Take damage with swipes attack
+    - [x] Critical Point where you can do more damage, key for the combat system
+- [x] GUI Menu
+  - [x] Health Bar
+  - [x] Damages number when hitting
 
 ### Optional Scripts
 - [ ] Advanced Movement, head movement with camera, then body movement
 - [ ] Combat System
+  - [ ] Damage Numer Animation (number floating/number on the right/left of the UI)
   - [ ] Swipe System
     - [ ] Character DEFENCE animation execution
     - [ ] Advanced Character ATTACK animation, creating the animation perfectly according to the angle of the swipe
@@ -79,8 +79,8 @@ Developers:
 <hr>
 
 ### Arts and Graphical stuff
-- [ ] Health Bar
-- [ ] Font and color for damage number
+- [x] Health Bar
+- [x] Font and color for damage number
 - [ ] Title Screen mockup
 - [ ] Pause Menu mockup
 - [x] Mouse icon
