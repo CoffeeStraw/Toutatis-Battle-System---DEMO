@@ -15,6 +15,7 @@ var _anim_tree
 var _spawn_point
 var _attack_shot
 var _attack_thread
+var _alert_thread
 var _dead = false
 
 signal player_hitten
@@ -123,6 +124,9 @@ func _process(delta):
 		_anim_tree.set("parameters/Idle_Walk/blend_amount", speed_blend)
 
 func _on_player_in_area(body):
+	$AlertParticles.emitting = true
+	_alert_thread = Thread.new()
+	_alert_thread.start(self, "_alert_disable", 1.3)
 	chasing = true
 	target = body
 
@@ -154,6 +158,11 @@ func _on_hit(damage):
 		$CollisionBox.disabled = true
 		$CollisionBoxFeet.disabled = true
 		$Area/CollisionShape.disabled = true
+
+func _alert_disable(time):
+	yield(get_tree().create_timer(time), "timeout")
+	$AlertParticles.emitting = false
+	_alert_thread.wait_to_finish()
 
 func _attack_disable(time):
 	yield(get_tree().create_timer(time), "timeout")
