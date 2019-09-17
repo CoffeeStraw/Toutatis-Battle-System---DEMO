@@ -14,7 +14,6 @@ var _velocity = Vector3()
 var _anim_tree
 var _spawn_point
 var _attack_shot
-var _attack_thread
 var _alert_thread
 var _dead = false
 
@@ -42,8 +41,6 @@ func _process(delta):
 
 		if target.get_global_transform().origin.distance_to(get_global_transform().origin) < attack_distance and not _anim_tree.get("parameters/AttackShot/active"):
 			_attack_shot = false
-			_attack_thread = Thread.new()
-			_attack_thread.start(self, "_attack_disable", 1.3)
 			
 			var delta_x = target.get_global_transform().origin.x - get_global_transform().origin.x
 			var delta_z = target.get_global_transform().origin.z - get_global_transform().origin.z
@@ -163,9 +160,3 @@ func _alert_disable(time):
 	yield(get_tree().create_timer(time), "timeout")
 	$AlertParticles.emitting = false
 	_alert_thread.wait_to_finish()
-
-func _attack_disable(time):
-	return
-	yield(get_tree().create_timer(time), "timeout")
-	_attack_shot = true
-	_attack_thread.wait_to_finish()
